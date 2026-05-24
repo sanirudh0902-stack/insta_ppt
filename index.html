@@ -3,65 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Instagram Mastery — Healthy Habit Buddy</title>
+  <title>Instagram Mastery — Instagram Learning Hub</title>
   <script src="https://cdn.tailwindcss.com">
   </script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
     * { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
     ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #0a0a0f; }
-    ::-webkit-scrollbar-thumb { background: #22c55e; border-radius: 3px; }
-    body { background: #08080e; }
+    ::-webkit-scrollbar-track { background: #f0f0f0; }
+    ::-webkit-scrollbar-thumb { background: #E1306C; border-radius: 3px; }
+    body { background: #FAFAFA; }
 
-    .glass { background: rgba(255,255,255,.04); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,.06); }
-    .glass-card { background: rgba(255,255,255,.03); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,.08); border-radius: 20px; transition: all .4s ease; }
-    .glass-card:hover { background: rgba(255,255,255,.06); border-color: rgba(34,197,94,.2); transform: translateY(-2px); box-shadow: 0 20px 60px -12px rgba(34,197,94,.08); }
+    .glass { background: rgba(255,255,255,.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(0,0,0,.06); }
+    .glass-card { background: #FFFFFF; border: 1px solid rgba(0,0,0,.05); border-radius: 28px; transition: all .4s ease; box-shadow: 0 12px 40px rgba(0,0,0,.08); }
+    .glass-card:hover { transform: translateY(-2px); box-shadow: 0 20px 60px -12px rgba(225,48,108,.12); border-color: rgba(225,48,108,.15); }
 
-    .neon-glow { box-shadow: 0 0 30px -8px rgba(34,197,94,.15); }
-    .neon-border { border-color: rgba(34,197,94,.3); }
-    .neon-text { background: linear-gradient(135deg, #22c55e, #4ade80); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .neon-glow { box-shadow: 0 0 30px -8px rgba(225,48,108,.2); }
+    .neon-border { border-color: rgba(225,48,108,.3); }
+    .neon-text { background: linear-gradient(135deg, #E1306C, #833AB4, #F77737); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
-    /* iPhone Mockup */
+    /* POCO F6 Mockup */
     .iphone {
-      width: 280px; height: 580px;
+      width: 280px; height: 622px;
       background: #000;
-      border-radius: 44px;
+      border-radius: 38px;
       border: 3px solid #1a1a2e;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 30px 80px -20px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.05);
+      box-shadow: 0 30px 80px -20px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.08), 0 20px 60px rgba(225,48,108,.08);
       margin: 0 auto;
       flex-shrink: 0;
+      animation: phone-float 4s ease-in-out infinite;
+    }
+    @keyframes phone-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
     }
     .iphone-notch {
-      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-      width: 130px; height: 28px;
-      background: #000;
-      border-radius: 0 0 18px 18px;
+      position: absolute; top: 18px; left: 50%; transform: translateX(-50%);
+      width: 14px; height: 14px;
+      background: radial-gradient(circle at 40% 35%, #2a2a3e, #0f0f1a);
+      border-radius: 50%;
       z-index: 20;
+      box-shadow: inset 0 1px 2px rgba(255,255,255,.05);
     }
-    .iphone-notch-inner {
-      position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
-      width: 10px; height: 10px;
-      background: #1a1a2e;
+    .iphone-notch::after {
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 4px;
+      background: rgba(255,255,255,.03);
       border-radius: 50%;
     }
+    .iphone-notch-inner { display: none; }
     .iphone-screen {
       width: 100%; height: 100%;
       position: relative;
       background: #0a0a0f;
     }
-    .iphone-screen iframe,
-    .iphone-screen img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      border: none;
-    }
     .iphone-home-indicator {
-      position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
-      width: 120px; height: 4px;
-      background: #333;
+      position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+      width: 110px; height: 3px;
+      background: rgba(255,255,255,.12);
       border-radius: 2px;
       z-index: 20;
     }
@@ -80,14 +86,29 @@
       pointer-events: none;
     }
     .iphone-label.show { opacity: 1; }
+    .video-overlay {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 15;
+      background: rgba(0,0,0,.5);
+      backdrop-filter: blur(6px);
+      color: rgba(255,255,255,.4);
+      font-size: 9px;
+      padding: 2px 12px;
+      border-radius: 10px;
+      pointer-events: none;
+      white-space: nowrap;
+    }
 
     @media (max-width: 640px) {
-      .iphone { width: 220px; height: 460px; border-radius: 34px; }
-      .iphone-notch { width: 100px; height: 22px; border-radius: 0 0 14px 14px; }
-      .iphone-home-indicator { width: 90px; }
+      .iphone { width: 220px; height: 490px; border-radius: 28px; }
+      .iphone-notch { top: 14px; width: 10px; height: 10px; }
+      .iphone-home-indicator { width: 80px; }
     }
     @media (min-width: 641px) and (max-width: 1024px) {
-      .iphone { width: 250px; height: 520px; }
+      .iphone { width: 250px; height: 556px; }
     }
 
     /* Animations */
@@ -106,7 +127,7 @@
       position: absolute;
       width: 40px; height: 40px;
       border-radius: 50%;
-      background: rgba(34,197,94,.3);
+      background: rgba(225,48,108,.3);
       z-index: 25;
       pointer-events: none;
       animation: tap-pulse 2s ease-in-out infinite;
@@ -128,41 +149,41 @@
     .gradient-shift { background-size: 200% 200%; animation: gradient-shift 6s ease infinite; }
 
     .step-num {
-      width: 32px; height: 32px; min-width: 32px;
+      width: 36px; height: 36px; min-width: 36px;
       display: flex; align-items: center; justify-content: center;
       border-radius: 50%;
-      font-weight: 700; font-size: .875rem;
-      background: rgba(34,197,94,.15);
-      color: #22c55e;
-      border: 1px solid rgba(34,197,94,.25);
+      font-weight: 700; font-size: 1rem;
+      background: linear-gradient(135deg, rgba(225,48,108,.12), rgba(131,58,180,.12));
+      color: #E1306C;
+      border: 1px solid rgba(225,48,108,.25);
     }
 
-    .nav-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.15); transition: all .3s ease; cursor: pointer; }
-    .nav-dot.active { background: #22c55e; width: 24px; border-radius: 4px; }
+    .nav-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(0,0,0,.12); transition: all .3s ease; cursor: pointer; }
+    .nav-dot.active { background: linear-gradient(135deg, #E1306C, #833AB4); width: 24px; border-radius: 4px; }
 
     .check-item { transition: all .3s ease; }
     .check-item.done span { text-decoration: line-through; opacity: .4; }
-    .check-item.done .check-box { background: #22c55e; border-color: #22c55e; }
+    .check-item.done .check-box { background: #E1306C; border-color: #E1306C; }
 
-    .section-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(34,197,94,.15), transparent); }
+    .section-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(225,48,108,.12), transparent); }
 
     .glow-orb {
       position: absolute;
       border-radius: 50%;
       filter: blur(80px);
       pointer-events: none;
-      opacity: .1;
+      opacity: .08;
     }
 
     .toggle-switch {
       width: 44px; height: 24px;
-      background: #333;
+      background: #DBDBDB;
       border-radius: 12px;
       position: relative;
       cursor: pointer;
       transition: background .3s ease;
     }
-    .toggle-switch.on { background: #22c55e; }
+    .toggle-switch.on { background: #E1306C; }
     .toggle-switch::after {
       content: '';
       position: absolute;
@@ -174,99 +195,945 @@
     }
     .toggle-switch.on::after { transform: translateX(20px); }
 
-    .video-overlay {
-      position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
-      background: rgba(0,0,0,.6); backdrop-filter: blur(8px);
-      color: #fff; font-size: 11px; padding: 4px 14px; border-radius: 20px;
-      z-index: 15; white-space: nowrap; display: flex; align-items: center; gap: 6px;
-    }
-
-    .video-player iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-    .video-player { background: #111; }
     .badge-premium {
       display: inline-flex; align-items: center; gap: 4px;
-      background: rgba(34,197,94,.1); border: 1px solid rgba(34,197,94,.2);
-      color: #22c55e; font-size: .75rem; font-weight: 600;
+      background: rgba(225,48,108,.08); border: 1px solid rgba(225,48,108,.2);
+      color: #E1306C; font-size: .75rem; font-weight: 600;
       padding: 4px 12px; border-radius: 20px;
+    }
+
+    /* ===== STEP PROGRESS TRACKER ===== */
+    .step-progress {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+      padding-left: 24px;
+    }
+    .step-progress::before {
+      content: '';
+      position: absolute;
+      left: 11px;
+      top: 16px;
+      bottom: 16px;
+      width: 2px;
+      background: rgba(0,0,0,.08);
+      border-radius: 1px;
+    }
+    .step-progress-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 0;
+      position: relative;
+      cursor: pointer;
+      transition: all .3s ease;
+      border: none;
+      background: none;
+      color: inherit;
+      text-align: left;
+      width: 100%;
+      font-family: 'Inter', sans-serif;
+    }
+    .step-progress-item:hover .step-progress-num {
+      transform: scale(1.1);
+    }
+    .step-progress-num {
+      width: 24px;
+      height: 24px;
+      min-width: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      background: rgba(0,0,0,.06);
+      color: rgba(0,0,0,.3);
+      border: 2px solid rgba(0,0,0,.08);
+      transition: all .4s ease;
+      position: relative;
+      z-index: 2;
+    }
+    .step-progress-item.active .step-progress-num {
+      background: rgba(225,48,108,.15);
+      border-color: #E1306C;
+      color: #E1306C;
+      box-shadow: 0 0 20px rgba(225,48,108,.2);
+    }
+    .step-progress-item.done .step-progress-num {
+      background: linear-gradient(135deg, #E1306C, #833AB4);
+      border-color: #E1306C;
+      color: #fff;
+      font-size: 10px;
+    }
+    .step-progress-item.done .step-progress-num::after {
+      content: '✓';
+    }
+    .step-progress-item.done .step-progress-num span {
+      display: none;
+    }
+    .step-progress-text {
+      font-size: .875rem;
+      color: rgba(0,0,0,.45);
+      transition: all .3s ease;
+      padding-top: 2px;
+      line-height: 1.4;
+    }
+    .step-progress-item.active .step-progress-text {
+      color: #262626;
+      font-weight: 600;
+    }
+    .step-progress-item.done .step-progress-text {
+      color: rgba(0,0,0,.3);
+      text-decoration: line-through;
+      text-decoration-color: rgba(225,48,108,.3);
+    }
+    .step-progress-bar {
+      height: 3px;
+      background: rgba(0,0,0,.06);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+    .step-progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #E1306C, #833AB4, #F77737);
+      border-radius: 2px;
+      transition: width .6s cubic-bezier(.16,1,.3,1);
+    }
+    .step-progress-label {
+      font-size: 11px;
+      color: rgba(0,0,0,.35);
+      margin-bottom: 4px;
+    }
+
+    /* ===== PREMIUM VIDEO OVERLAY ===== */
+    .premium-badge-bar {
+      position: absolute;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      background: rgba(0,0,0,.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(225,48,108,.25);
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 600;
+      color: #E1306C;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .premium-badge-bar.hidden {
+      display: none;
+    }
+    .premium-badge-bar svg {
+      width: 12px;
+      height: 12px;
+      fill: #E1306C;
+    }
+
+    /* ===== ELDERLY-FRIENDLY UX ===== */
+    .video-player video::-webkit-media-controls {
+      transform: scale(1.2);
+    }
+    .video-player video::-webkit-media-controls-panel {
+      background: rgba(0,0,0,.7);
+    }
+    .video-player video::-webkit-media-controls-play-button {
+      transform: scale(1.3);
+    }
+    .video-player video::-webkit-media-controls-timeline {
+      height: 6px;
+    }
+
+    @media (min-width: 768px) {
+      .step-progress-item {
+        padding: 14px 0;
+      }
+      .step-progress-num {
+        width: 28px;
+        height: 28px;
+        min-width: 28px;
+        font-size: 13px;
+      }
+      .step-progress-text {
+        font-size: 1rem;
+      }
+    }
+    @media (max-width: 640px) {
+      .premium-badge-bar {
+        top: 10px;
+        font-size: 8px;
+        padding: 3px 10px;
+      }
+      .step-progress {
+        padding-left: 20px;
+      }
+      .step-progress::before {
+        left: 9px;
+      }
+      .step-progress-num {
+        width: 20px;
+        height: 20px;
+        min-width: 20px;
+        font-size: 10px;
+      }
+      .step-progress-text {
+        font-size: .8rem;
+      }
+    }
+
+    /* Scene phone for collab */
+    .scene-screen { position: relative; overflow: hidden; }
+    .scene-content { width: 100%; height: 100%; transition: opacity .35s ease; display: flex; flex-direction: column; }
+    .scene-dots { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); display: flex; gap: 4px; z-index: 10; }
+    .scene-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,.2); cursor: pointer; transition: all .3s ease; }
+    .scene-dot.active { background: #E1306C; width: 18px; border-radius: 3px; }
+
+    /* Instagram mock UI */
+    .ig-scene { height:100%; display:flex; flex-direction:column; background:#000; position:relative; }
+    .ig-top-bar { display:flex; align-items:center; justify-content:space-between; padding:8px 14px; color:#fff; font-size:11px; font-weight:600; border-bottom:1px solid rgba(255,255,255,.06); }
+    .ig-content { flex:1; display:flex; flex-direction:column; padding:8px; overflow:hidden; }
+    .ig-center { align-items:center; justify-content:center; }
+    .ig-bottom-bar { padding:8px 14px; border-top:1px solid rgba(255,255,255,.06); color:#fff; font-size:10px; }
+    .ig-play-btn { width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:16px;color:#fff; }
+    .ig-tag-row { display:flex;align-items:center;gap:8px;padding:10px 14px;background:rgba(225,48,108,.1);border:1px solid rgba(225,48,108,.3);border-radius:10px;color:#E1306C;font-size:11px;font-weight:600;margin:12px; }
+    .ig-glow { box-shadow:0 0 20px -4px rgba(225,48,108,.25); }
+    .ig-modal { background:rgba(26,26,46,.95); border-radius:16px; padding:24px 20px; text-align:center; border:1px solid rgba(255,255,255,.08); margin:0 16px; width:100%; }
+    .ig-invite-btn { background:rgba(225,48,108,.15); border:2px solid #E1306C; color:#E1306C; font-weight:700; font-size:12px; padding:12px 20px; border-radius:12px; cursor:default; }
+    .ig-pulse { animation: ig-pulse 1.5s ease-in-out infinite; }
+    @keyframes ig-pulse { 0%,100%{box-shadow:0 0 0 0 rgba(225,48,108,.4)} 50%{box-shadow:0 0 0 12px rgba(225,48,108,0)} }
+
+    .ig-search-bar { display:flex;align-items:center;gap:6px;padding:8px 12px;background:rgba(255,255,255,.06);border-radius:10px;margin:8px 12px; }
+    .ig-search-bar input { background:transparent;border:none;color:#fff;font-size:10px;width:100%;outline:none; }
+    .ig-search-result { display:flex;align-items:center;gap:10px;padding:10px 16px;margin:4px 12px;background:rgba(255,255,255,.03);border-radius:10px; }
+    .ig-avatar { width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#E1306C,#833AB4);display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;font-weight:700;flex-shrink:0; }
+    .ig-dual-profile { display:flex;align-items:center;justify-content:center;gap:6px;margin:12px 0 4px; }
+    .ig-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:2px;padding:4px; }
+    .ig-grid-item { aspect-ratio:1; background:rgba(255,255,255,.04); border-radius:3px; display:flex;align-items:center;justify-content:center; font-size:9px; color:#444; }
+    .ig-post-header { display:flex;align-items:center;gap:8px;padding:8px 12px; }
+    .ig-post-img { flex:1; background:linear-gradient(135deg,rgba(255,255,255,.03),rgba(255,255,255,.06)); display:flex; align-items:center; justify-content:center; font-size:10px; color:#555; }
+    .ig-menu-overlay { position:absolute;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:flex-end; }
+    .ig-menu { background:#1a1a2e; border-radius:16px 16px 0 0; width:100%; padding:12px 0; }
+    .ig-menu-item { display:flex;align-items:center;gap:10px;padding:10px 16px;color:#fff;font-size:11px; }
+    .ig-menu-item.hl { background:rgba(225,48,108,.12);color:#E1306C;border-left:3px solid #E1306C; }
+    .ig-profile-header { display:flex;align-items:center;gap:12px;padding:12px 16px; }
+    .ig-p-avatar { width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#E1306C,#833AB4);flex-shrink:0; }
+    .ig-p-name { color:#fff;font-size:11px;font-weight:700; }
+    .ig-p-username { color:#666;font-size:9px; }
+    .ig-p-stats { display:flex;gap:16px;font-size:9px;color:#999; }
+
+    .finger-cue {
+      position: absolute; width: 28px; height: 28px; border-radius: 50%;
+      background: rgba(225,48,108,.25); border: 2px solid rgba(225,48,108,.4);
+      z-index: 15; pointer-events: none;
+      animation: finger-tap 2s ease-in-out infinite;
+    }
+    @keyframes finger-tap {
+      0%, 100% { transform: scale(1); opacity: .5; }
+      50% { transform: scale(1.15); opacity: 1; }
+    }
+
+    /* ===== LOCAL VIDEO PLAYER SYSTEM ===== */
+    .video-player {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      background: #000;
+      overflow: hidden;
+    }
+    .video-player video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      background: #000;
+    }
+    .video-poster {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0a0a0f;
+      transition: opacity .4s ease;
+    }
+    .video-poster.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .video-poster img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .play-btn-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 6;
+      cursor: pointer;
+      transition: background .3s ease;
+    }
+    .play-btn-overlay:hover {
+      background: rgba(0,0,0,.1);
+    }
+    .play-btn-large {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #E1306C, #833AB4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 40px rgba(225,48,108,.4);
+      transition: transform .3s ease, box-shadow .3s ease;
+      animation: play-pulse 2s ease-in-out infinite;
+    }
+    .play-btn-large:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 60px rgba(225,48,108,.5);
+    }
+    .play-btn-large svg {
+      width: 28px;
+      height: 28px;
+      fill: #fff;
+      margin-left: 3px;
+    }
+    @keyframes play-pulse {
+      0%, 100% { box-shadow: 0 0 30px rgba(225,48,108,.3); }
+      50% { box-shadow: 0 0 60px rgba(225,48,108,.5); }
+    }
+    .replay-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,.6);
+      backdrop-filter: blur(4px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .4s ease;
+    }
+    .replay-overlay.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .replay-btn {
+      padding: 14px 32px;
+      border-radius: 50px;
+      background: linear-gradient(135deg, #E1306C, #833AB4);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform .3s ease, box-shadow .3s ease;
+      box-shadow: 0 0 30px rgba(225,48,108,.3);
+    }
+    .replay-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 50px rgba(225,48,108,.5);
+    }
+    .replay-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: #fff;
+    }
+    .video-controls-badge {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 8;
+      background: rgba(0,0,0,.6);
+      backdrop-filter: blur(8px);
+      color: rgba(255,255,255,.5);
+      font-size: 9px;
+      padding: 3px 12px;
+      border-radius: 12px;
+      pointer-events: none;
+      white-space: nowrap;
+      transition: opacity .3s ease;
+    }
+    .video-controls-badge.hidden {
+      opacity: 0;
+    }
+
+    /* Video error state */
+    .video-error {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #0a0a0f;
+      color: #666;
+      font-size: 12px;
+      text-align: center;
+      padding: 20px;
+    }
+    .video-error.hidden {
+      display: none;
+    }
+
+    @media (max-width: 640px) {
+      .play-btn-large { width: 48px; height: 48px; }
+      .play-btn-large svg { width: 20px; height: 20px; }
+      .replay-btn { padding: 10px 22px; font-size: 13px; }
+      .replay-btn svg { width: 16px; height: 16px; }
+    }
+
+    /* Section header label */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(225,48,108,.08);
+      border: 1px solid rgba(225,48,108,.15);
+      color: #E1306C;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 20px;
+      letter-spacing: .3px;
+    }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar-panel {
+      width: 280px;
+      max-height: calc(100vh - 40px);
+      overflow-y: auto;
+      scrollbar-width: thin;
+    }
+    .sidebar-panel::-webkit-scrollbar { width: 3px; }
+    .sidebar-panel::-webkit-scrollbar-thumb { background: #E1306C; border-radius: 2px; }
+    .course-progress-card {
+      background: linear-gradient(135deg, rgba(225,48,108,.06), rgba(131,58,180,.06));
+      border: 1px solid rgba(225,48,108,.12);
+      border-radius: 20px;
+      padding: 18px;
+    }
+    .course-progress-ring {
+      width: 60px; height: 60px;
+      position: relative;
+    }
+    .course-progress-ring svg {
+      transform: rotate(-90deg);
+    }
+    .course-progress-ring circle {
+      fill: none;
+      stroke-width: 5;
+      cx: 30; cy: 30; r: 24;
+    }
+    .course-progress-ring .bg-circle {
+      stroke: rgba(225,48,108,.1);
+    }
+    .course-progress-ring .fg-circle {
+      stroke: url(#instaGrad);
+      stroke-linecap: round;
+      transition: stroke-dashoffset .8s ease;
+    }
+    .course-progress-pct {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 800;
+      color: #E1306C;
+    }
+    .course-content-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      transition: all .3s ease;
+      cursor: pointer;
+      text-decoration: none;
+      color: rgba(0,0,0,.5);
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .course-content-item:hover {
+      background: rgba(225,48,108,.04);
+      color: rgba(0,0,0,.7);
+    }
+    .course-content-item.active {
+      background: linear-gradient(135deg, rgba(225,48,108,.1), rgba(131,58,180,.06));
+      color: #E1306C;
+      font-weight: 600;
+    }
+    .course-content-item .item-icon {
+      width: 22px; height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .certificate-card {
+      background: linear-gradient(135deg, rgba(255,215,0,.06), rgba(255,165,0,.04));
+      border: 1px solid rgba(255,215,0,.15);
+      border-radius: 16px;
+      padding: 14px;
+    }
+    .certificate-card.locked { opacity: .6; }
+    .certificate-card.unlocked { opacity: 1; border-color: rgba(255,215,0,.4); }
+
+    /* ===== SEARCH BAR ===== */
+    .search-bar {
+      position: relative;
+      width: 100%;
+      max-width: 320px;
+    }
+    .search-bar input {
+      width: 100%;
+      padding: 10px 14px 10px 38px;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,.06);
+      background: rgba(0,0,0,.03);
+      font-size: 13px;
+      outline: none;
+      transition: all .3s ease;
+    }
+    .search-bar input:focus {
+      border-color: rgba(225,48,108,.3);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(225,48,108,.08);
+    }
+    .search-bar .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #aaa;
+      pointer-events: none;
+    }
+    .search-highlight {
+      background: rgba(225,48,108,.15);
+      border-radius: 3px;
+      padding: 0 2px;
+    }
+    .search-hidden {
+      display: none !important;
+    }
+
+    /* ===== TOP PROGRESS HEADER ===== */
+    .top-progress {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .top-progress .tp-info {
+      text-align: right;
+    }
+    .top-progress .tp-label {
+      font-size: 10px;
+      color: rgba(0,0,0,.4);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+    .top-progress .tp-count {
+      font-size: 13px;
+      font-weight: 700;
+      color: #E1306C;
+    }
+    .top-progress .tp-bar {
+      width: 80px;
+      height: 4px;
+      background: rgba(0,0,0,.06);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .top-progress .tp-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #F58529, #DD2A7B, #8134AF);
+      border-radius: 2px;
+      transition: width .6s ease;
+    }
+
+    /* ===== TIPS CARD REDESIGN ===== */
+    .tips-card {
+      background: linear-gradient(135deg, rgba(225,48,108,.04), rgba(131,58,180,.04));
+      border: 1px solid rgba(225,48,108,.15);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 4px 16px rgba(225,48,108,.06);
+    }
+    .tips-card .tips-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .tips-card .tips-header svg {
+      width: 20px; height: 20px;
+    }
+
+    /* ===== MARK AS COMPLETED ===== */
+    .mark-complete-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .3s ease;
+      border: 2px solid rgba(225,48,108,.25);
+      background: transparent;
+      color: #E1306C;
+    }
+    .mark-complete-btn:hover {
+      background: rgba(225,48,108,.06);
+      border-color: #E1306C;
+    }
+    .mark-complete-btn.done {
+      background: linear-gradient(135deg, #E1306C, #833AB4);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 4px 12px rgba(225,48,108,.2);
+    }
+    .mark-complete-btn.done:hover {
+      box-shadow: 0 6px 20px rgba(225,48,108,.3);
+      transform: translateY(-1px);
+    }
+
+    /* ===== PREV/NEXT NAV ===== */
+    .section-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(0,0,0,.06);
+    }
+    .section-nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .3s ease;
+      border: none;
+      text-decoration: none;
+    }
+    .section-nav-btn.prev {
+      background: rgba(0,0,0,.04);
+      color: rgba(0,0,0,.6);
+    }
+    .section-nav-btn.prev:hover {
+      background: rgba(0,0,0,.08);
+      color: rgba(0,0,0,.8);
+    }
+    .section-nav-btn.next {
+      background: linear-gradient(135deg, #E1306C, #833AB4);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(225,48,108,.2);
+    }
+    .section-nav-btn.next:hover {
+      box-shadow: 0 8px 24px rgba(225,48,108,.3);
+      transform: translateY(-1px);
+    }
+    .section-nav-btn.next:disabled, .section-nav-btn.prev:disabled {
+      opacity: .3;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+    .section-nav-spacer {
+      flex: 1;
+    }
+
+    /* ===== PHONE WRAPPER ===== */
+    .phone-wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .phone-wrapper .phone-shadow {
+      position: absolute;
+      bottom: -20px;
+      width: 80%;
+      height: 30px;
+      background: radial-gradient(ellipse, rgba(225,48,108,.15), transparent);
+      border-radius: 50%;
+      filter: blur(12px);
+      animation: phone-shadow-float 4s ease-in-out infinite;
+    }
+    @keyframes phone-shadow-float {
+      0%, 100% { opacity: .6; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.15); }
+    }
+
+    /* ===== RESUME BANNER ===== */
+    .resume-banner {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, rgba(225,48,108,.08), rgba(131,58,180,.06));
+      border: 1px solid rgba(225,48,108,.15);
+      border-radius: 16px;
+      padding: 12px 20px;
+      cursor: pointer;
+      transition: all .3s ease;
+      text-decoration: none;
+    }
+    .resume-banner:hover {
+      background: linear-gradient(135deg, rgba(225,48,108,.12), rgba(131,58,180,.1));
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(225,48,108,.12);
+    }
+
+    /* Search result dropdown */
+    .search-results-dropdown {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      right: 0;
+      background: #fff;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,.06);
+      box-shadow: 0 12px 40px rgba(0,0,0,.1);
+      max-height: 280px;
+      overflow-y: auto;
+      z-index: 100;
+      display: none;
+    }
+    .search-results-dropdown.show { display: block; }
+    .search-result-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: rgba(0,0,0,.6);
+      cursor: pointer;
+      transition: all .2s ease;
+      text-decoration: none;
+    }
+    .search-result-item:hover {
+      background: rgba(225,48,108,.04);
+      color: #E1306C;
+    }
+    .search-result-item .sri-icon {
+      width: 26px; height: 26px;
+      background: linear-gradient(135deg, rgba(225,48,108,.1), rgba(131,58,180,.08));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #E1306C;
+      flex-shrink: 0;
+    }
+    .search-result-item .sri-label {
+      flex: 1;
+    }
+    .search-no-results {
+      padding: 20px;
+      text-align: center;
+      color: rgba(0,0,0,.3);
+      font-size: 13px;
+    }
+
+    /* ===== SIDEBAR COLLAPSE / EXPAND ===== */
+    .sidebar-nav {
+      transition: transform .3s cubic-bezier(.16,1,.3,1);
+    }
+    body.sidebar-collapsed .sidebar-nav {
+      transform: translateX(-120%);
+    }
+    body.sidebar-collapsed.sidebar-drawer-open .sidebar-nav {
+      transform: translateX(0);
+      z-index: 60;
+    }
+    body.sidebar-drawer-open .sidebar-nav .sidebar-panel {
+      box-shadow: 20px 0 40px -12px rgba(0,0,0,.15);
+    }
+
+    /* Floating button */
+    .sidebar-floating-btn {
+      position: fixed;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 35;
+      display: none;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      background: #fff;
+      border-radius: 14px;
+      border: 1px solid rgba(225,48,108,.15);
+      box-shadow: 0 4px 20px rgba(0,0,0,.08);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      color: #E1306C;
+      transition: all .3s ease;
+      white-space: nowrap;
+    }
+    .sidebar-floating-btn:hover {
+      box-shadow: 0 8px 28px rgba(225,48,108,.15);
+      transform: translateY(-50%) translateX(2px);
+    }
+    body.sidebar-collapsed:not(.sidebar-drawer-open) .sidebar-floating-btn {
+      display: flex;
+    }
+
+    /* Drawer overlay */
+    .sidebar-drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.3);
+      backdrop-filter: blur(2px);
+      z-index: 50;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s ease;
+    }
+    body.sidebar-drawer-open .sidebar-drawer-overlay {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Content gap controlled by class */
+    @media (min-width: 1024px) {
+      .needs-sidebar-gap {
+        padding-left: 336px;
+        transition: padding-left .3s cubic-bezier(.16,1,.3,1);
+      }
+      body.sidebar-collapsed .needs-sidebar-gap {
+        padding-left: 1rem;
+      }
+    }
+
+    /* ===== RESPONSIVE SIDEBAR ===== */
+    @media (max-width: 1023px) {
+      .sidebar-panel { display: none; }
+      .sidebar-floating-btn { display: none !important; }
+      .sidebar-drawer-overlay { display: none !important; }
+    }
+    @media (max-width: 640px) {
+      .search-bar { max-width: 100%; }
+      .section-nav { flex-direction: column; }
+      .section-nav-btn { width: 100%; justify-content: center; }
+      .top-progress .tp-bar { width: 60px; }
     }
   </style>
 </head>
-<body class="text-gray-100 antialiased">
+<body class="text-gray-900 antialiased">
 
-  <!-- Fixed Side Navigation -->
-  <nav class="fixed left-0 top-1/2 -translate-y-1/2 z-50 hidden lg:flex flex-col items-center gap-3 pl-4">
-    <div class="flex flex-col items-center gap-2 py-4 px-2 glass rounded-2xl" id="sideNav"></div>
+  <!-- Top Header Bar (Desktop) -->
+  <header class="fixed top-0 left-0 right-0 z-40 glass border-b border-black/5 hidden lg:block">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <span class="text-lg font-bold neon-text">Instagram Mastery</span>
+      <div class="flex items-center gap-6">
+        <div class="search-bar" id="searchBar">
+          <svg class="search-icon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z"/></svg>
+          <input type="text" id="searchInput" placeholder="Search topics or sections..." oninput="handleSearch(this.value)">
+          <div class="search-results-dropdown" id="searchResults"></div>
+        </div>
+        <div class="top-progress" id="topProgress"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Side Navigation (Desktop) -->
+  <nav class="sidebar-nav fixed left-0 top-0 h-full z-30 hidden lg:flex flex-col pt-20 pl-4 pb-4 pointer-events-none">
+    <div class="sidebar-panel glass rounded-2xl p-4 pointer-events-auto" id="sideNav"></div>
   </nav>
 
+  <!-- Floating Course Content Button -->
+  <button class="sidebar-floating-btn" id="sidebarToggleBtn" onclick="toggleSidebarDrawer()">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    <span>Course Content</span>
+  </button>
+
+  <!-- Drawer overlay backdrop -->
+  <div class="sidebar-drawer-overlay" id="sidebarOverlay" onclick="closeSidebarDrawer()"></div>
+
   <!-- Top Nav (mobile) -->
-  <nav class="fixed top-0 left-0 right-0 z-40 glass border-b border-white/5 lg:hidden">
+  <nav class="fixed top-0 left-0 right-0 z-40 glass border-b border-black/5 lg:hidden">
     <div class="flex items-center justify-between px-4 h-14">
       <span class="text-sm font-bold neon-text">IG Mastery</span>
-      <button onclick="document.getElementById('mobileMenu').classList.toggle('hidden')" class="p-2">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-      </button>
+      <div class="flex items-center gap-3">
+        <div class="top-progress scale-75 origin-right" id="topProgressMobile"></div>
+        <button onclick="document.getElementById('mobileMenu').classList.toggle('hidden')" class="p-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
     </div>
-    <div id="mobileMenu" class="hidden border-t border-white/5 px-4 py-3 space-y-1">
-      <a href="#hero" class="block py-2 text-sm text-gray-400 hover:text-white">Home</a>
-      <a href="#s-intro" class="block py-2 text-sm text-gray-400 hover:text-white">Intro</a>
-      <a href="#s-create" class="block py-2 text-sm text-gray-400 hover:text-white">Account</a>
-      <a href="#s-home" class="block py-2 text-sm text-gray-400 hover:text-white">Home</a>
-      <a href="#s-stories" class="block py-2 text-sm text-gray-400 hover:text-white">Stories</a>
-      <a href="#s-posts" class="block py-2 text-sm text-gray-400 hover:text-white">Posts</a>
-      <a href="#s-reels" class="block py-2 text-sm text-gray-400 hover:text-white">Reels</a>
-      <a href="#s-explore" class="block py-2 text-sm text-gray-400 hover:text-white">Explore</a>
-      <a href="#s-msgs" class="block py-2 text-sm text-gray-400 hover:text-white">Messages</a>
-      <a href="#s-settings" class="block py-2 text-sm text-gray-400 hover:text-white">Settings</a>
-      <a href="#s-tips" class="block py-2 text-sm text-gray-400 hover:text-white">Tips</a>
-      <a href="#s-campaign" class="block py-2 text-sm text-gray-400 hover:text-white">Campaign</a>
-      <a href="#s-problems" class="block py-2 text-sm text-gray-400 hover:text-white">Problems</a>
-      <a href="#s-practice" class="block py-2 text-sm text-gray-400 hover:text-white">Practice</a>
+    <div id="mobileMenu" class="hidden border-t border-black/5 px-4 py-3 space-y-1 max-h-[70vh] overflow-y-auto">
+      <a href="#hero" class="block py-2 text-sm text-gray-500 hover:text-gray-900">Home</a>
+      <a href="#s-intro" class="block py-2 text-sm text-gray-500 hover:text-gray-900">What is Instagram</a>
+      <a href="#s-create" class="block py-2 text-sm text-gray-500 hover:text-gray-900">Create Account</a>
+      <a href="#s-stories" class="block py-2 text-sm text-gray-500 hover:text-gray-900">Upload Stories</a>
+      <a href="#s-posts" class="block py-2 text-sm text-gray-500 hover:text-gray-900">Upload Posts</a>
+      <a href="#s-reels" class="block py-2 text-sm text-gray-500 hover:text-gray-900">Upload Reels</a>
+      <a href="#s-collab" class="block py-2 text-sm text-gray-500 hover:text-gray-900">Collaboration Tag</a>
+      <a href="#s-settings" class="block py-2 text-sm text-gray-500 hover:text-gray-900">Settings &amp; Privacy</a>
+      <a href="#s-problems" class="block py-2 text-sm text-gray-500 hover:text-gray-900">Common Problems</a>
+      <a href="#s-practice" class="block py-2 text-sm text-gray-500 hover:text-gray-900">Practice Tasks</a>
     </div>
   </nav>
 
   <!-- ===== SECTION 1: HERO ===== -->
-  <section id="hero" class="min-h-screen flex items-center relative overflow-hidden pt-14 lg:pt-0">
-    <div class="glow-orb w-[500px] h-[500px] bg-emerald-500 top-[-100px] right-[-100px]"></div>
-    <div class="glow-orb w-[400px] h-[400px] bg-green-500 bottom-[-80px] left-[-80px]"></div>
+  <section id="hero" class="min-h-screen flex items-center relative overflow-hidden pt-14 lg:pt-0" style="background: linear-gradient(135deg, rgba(225,48,108,.04), rgba(131,58,180,.04), rgba(247,119,55,.04));">
+    <div class="glow-orb w-[500px] h-[500px] top-[-100px] right-[-100px]" style="background: #E1306C; opacity: .06;"></div>
+    <div class="glow-orb w-[400px] h-[400px] bottom-[-80px] left-[-80px]" style="background: #833AB4; opacity: .06;"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full relative z-10">
-      <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-        <div class="reveal-left">
-          <div class="flex items-center gap-2 mb-4">
-            <span class="badge-premium">🧘 Healthy Habit Buddy</span>
-            <span class="text-xs text-gray-500">v2.0</span>
+      <div class="flex flex-col items-center text-center">
+        <div class="reveal-left max-w-3xl mx-auto">
+          <div class="flex items-center justify-center gap-2 mb-4">
+            <span class="badge-premium"> Instagram Learning Hub</span>
+            <span class="text-xs text-gray-500">v3.0</span>
           </div>
           <h1 class="text-4xl sm:text-5xl lg:text-7xl font-black leading-[1.1] mb-4">
             Instagram<br>
             <span class="neon-text">Mastery</span>
           </h1>
-          <p class="text-lg sm:text-xl text-gray-400 mb-6 max-w-lg leading-relaxed">
-            A friendly, step-by-step guide to Instagram for our wellness community. Learn at your own pace, with visual help every step of the way.
+          <p class="text-lg sm:text-xl text-gray-600 mb-6 max-w-2xl mx-auto leading-relaxed">
+            A friendly, step-by-step guide to Instagram for beginners everywhere. Learn at your own pace, with visual help every step of the way.
           </p>
-          <div class="flex flex-col sm:flex-row gap-3">
-            <a href="#s-intro" class="inline-flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-black font-bold px-7 py-4 rounded-2xl transition-all text-base hover:scale-[1.02]">Start Learning</a>
-            <a href="#s-practice" class="inline-flex items-center justify-center gap-2 glass hover:bg-white/10 px-7 py-4 rounded-2xl transition-all text-base border border-white/10">Practice Tasks</a>
+          <div class="flex flex-col sm:flex-row gap-3 justify-center">
+            <a href="#s-intro" class="inline-flex items-center justify-center gap-2 text-white font-bold px-7 py-4 rounded-2xl transition-all text-base hover:scale-[1.02]" style="background: linear-gradient(135deg, #E1306C, #833AB4, #F77737); box-shadow: 0 8px 24px rgba(225,48,108,.25);">Start Learning</a>
+            <a href="#s-practice" class="inline-flex items-center justify-center gap-2 bg-white text-gray-700 font-bold px-7 py-4 rounded-2xl transition-all text-base hover:scale-[1.02] hover:shadow-lg border border-gray-200">Practice Tasks</a>
           </div>
-          <div class="flex items-center gap-6 mt-6 text-sm text-gray-500">
-            <span>📱 10 Interactive Modules</span>
-            <span>🎯 Beginner Friendly</span>
-            <span>💚 Community Supported</span>
-          </div>
-        </div>
-        <div class="reveal-right flex justify-center">
-          <div class="iphone float">
-            <div class="iphone-notch"><div class="iphone-notch-inner"></div></div>
-            <div class="iphone-screen">
-              <div class="video-player w-full h-full relative cursor-pointer" data-video="s-9LzsvH9xw" onclick="playVideo(this)">
-                <div class="absolute inset-0 flex items-center justify-center bg-black/40 z-10 hover:bg-black/20 transition">
-                  <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-emerald-500 flex items-center justify-center shadow-lg transform transition hover:scale-110">
-                    <svg class="w-6 h-6 sm:w-7 sm:h-7 text-black ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                  </div>
-                </div>
-                <img src="https://i.ytimg.com/vi/s-9LzsvH9xw/hqdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover" loading="lazy">
-              </div>
-            </div>
-            <div class="iphone-home-indicator"></div>
-            <div class="video-overlay">▶ Tap to Play</div>
+          <div id="resumeBanner" class="flex justify-center mt-4" style="display:none"></div>
+          <div class="flex items-center justify-center gap-6 mt-6 text-sm text-gray-500">
+            <span> 8 Interactive Modules</span>
+            <span> Beginner Friendly</span>
+            <span> Step-by-Step Learning</span>
           </div>
         </div>
       </div>
@@ -274,137 +1141,132 @@
     </div>
   </section>
 
-  <!-- ===== SECTIONS 2-13 GENERATED BY JS ===== -->
-  <div id="sectionsContainer"></div>
+  <!-- ===== SECTIONS 2-9 GENERATED BY JS ===== -->
+  <div id="sectionsContainer" class="needs-sidebar-gap"></div>
 
-  <!-- ===== SECTION 14: PRACTICE TASKS ===== -->
+  <!-- ===== SECTION 10: PRACTICE TASKS ===== -->
   <section id="s-practice" class="py-16 sm:py-20 relative overflow-hidden">
-    <div class="glow-orb w-[400px] h-[400px] bg-emerald-500 right-[-120px] top-[20%]"></div>
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
+    <div class="glow-orb w-[400px] h-[400px] right-[-120px] top-[20%]" style="background: #F77737; opacity: .06;"></div>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 needs-sidebar-gap relative z-10">
       <div class="text-center mb-10 reveal">
-        <span class="badge-premium">🎯 Section 14</span>
+        <span class="badge-premium"> Section 9</span>
         <h2 class="text-3xl sm:text-4xl font-black mt-3">Practice Tasks</h2>
-        <p class="text-gray-400 mt-2">Complete each task and track your progress!</p>
+        <p class="text-gray-500 mt-2">Complete each task and track your progress!</p>
       </div>
       <div class="glass-card p-6 sm:p-8 max-w-xl mx-auto reveal">
         <div class="flex items-center justify-between mb-5">
-          <h3 class="text-lg font-bold">📋 Your Checklist</h3>
-          <span class="text-sm text-emerald-400 font-medium" id="practiceCount">0 / 5 done</span>
+          <h3 class="text-lg font-bold text-gray-900"> Your Checklist</h3>
+          <span class="text-sm font-medium" id="practiceCount" style="color:#E1306C;">0 / 5 done</span>
         </div>
         <div id="practiceList" class="space-y-2"></div>
-        <div class="mt-5 pt-4 border-t border-white/5">
-          <div class="w-full bg-white/5 rounded-full h-2 overflow-hidden">
-            <div class="bg-emerald-500 h-full rounded-full transition-all duration-500" id="practiceBar" style="width:0%"></div>
+        <div class="mt-5 pt-4 border-t border-gray-100">
+          <div class="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
+            <div class="h-full rounded-full transition-all duration-500" id="practiceBar" style="width:0%;background:linear-gradient(90deg,#E1306C,#833AB4);"></div>
           </div>
         </div>
-        <button onclick="resetPractice()" class="mt-4 text-sm text-gray-500 hover:text-white transition">↺ Reset All</button>
+        <button onclick="resetPractice()" class="mt-4 text-sm text-gray-400 hover:text-gray-700 transition"> Reset All</button>
+      </div>
+      <!-- Mark as Completed -->
+      <div style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:24px">
+        <button class="mark-complete-btn" onclick="markSectionComplete('s-practice')" id="mc-s-practice">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          Mark as Completed
+        </button>
+      </div>
+      <!-- Previous / Next Navigation -->
+      <div class="section-nav" style="max-width:640px;margin-left:auto;margin-right:auto">
+        <a href="#s-problems" class="section-nav-btn prev"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg> Previous Section</a>
+        <div class="section-nav-spacer"></div>
       </div>
     </div>
   </section>
 
-  <!-- ===== SECTION 15: FINAL MOTIVATION ===== -->
+  <!-- ===== FINAL MOTIVATION ===== -->
   <section class="py-16 sm:py-20 relative overflow-hidden">
-    <div class="glow-orb w-[600px] h-[600px] bg-emerald-500 top-[-200px] left-[-200px]"></div>
-    <div class="glow-orb w-[400px] h-[400px] bg-green-500 bottom-[-100px] right-[-100px]"></div>
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
+    <div class="glow-orb w-[600px] h-[600px] top-[-200px] left-[-200px]" style="background: #E1306C; opacity: .05;"></div>
+    <div class="glow-orb w-[400px] h-[400px] bottom-[-100px] right-[-100px]" style="background: #F77737; opacity: .05;"></div>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 needs-sidebar-gap text-center relative z-10">
       <div class="reveal">
-        <span class="text-5xl block mb-4">🌿</span>
+        <span class="text-5xl block mb-4"></span>
         <h2 class="text-3xl sm:text-5xl font-black leading-tight mb-4">
-          Your Healthy Journey<br><span class="neon-text">Can Inspire Others</span>
+          Your Instagram Journey<br><span class="neon-text">Can Inspire Others</span>
         </h2>
-        <p class="text-gray-400 text-lg sm:text-xl max-w-2xl mx-auto mb-8 leading-relaxed">
-          Every story you share, every reel you post, every healthy habit you showcase —<br>
+        <p class="text-gray-500 text-lg sm:text-xl max-w-2xl mx-auto mb-8 leading-relaxed">
+          Every story you share, every reel you post, every moment you capture &mdash;<br>
           you're motivating someone else to start their own journey.
         </p>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto mb-8">
-          <div class="glass-card p-4"><span class="text-2xl">📸</span><p class="text-sm mt-1 text-gray-300">Share Your Story</p></div>
-          <div class="glass-card p-4"><span class="text-2xl">🎥</span><p class="text-sm mt-1 text-gray-300">Post a Reel</p></div>
-          <div class="glass-card p-4"><span class="text-2xl">🏷️</span><p class="text-sm mt-1 text-gray-300">Tag the Group</p></div>
-          <div class="glass-card p-4"><span class="text-2xl">💚</span><p class="text-sm mt-1 text-gray-300">Inspire Others</p></div>
+          <div class="glass-card p-4"><span class="text-2xl"></span><p class="text-sm mt-1 text-gray-600">Share Your Story</p></div>
+          <div class="glass-card p-4"><span class="text-2xl"></span><p class="text-sm mt-1 text-gray-600">Post a Reel</p></div>
+          <div class="glass-card p-4"><span class="text-2xl"></span><p class="text-sm mt-1 text-gray-600">Tag a Friend</p></div>
+          <div class="glass-card p-4"><span class="text-2xl"></span><p class="text-sm mt-1 text-gray-600">Inspire Others</p></div>
         </div>
-        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-black font-bold px-8 py-4 rounded-2xl transition-all text-lg hover:scale-[1.02]">
-          Open Instagram & Share 📲
+        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-white font-bold px-8 py-4 rounded-2xl transition-all text-lg hover:scale-[1.02]" style="background: linear-gradient(135deg, #E1306C, #833AB4, #F77737); box-shadow: 0 8px 24px rgba(225,48,108,.25);">
+          Open Instagram & Share 
         </a>
-        <p class="text-gray-500 text-sm mt-4">#HealthyHabitBuddy</p>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="border-t border-white/5 py-8">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center text-sm text-gray-500">
-      <span class="neon-text font-bold">Healthy Habit Buddy</span> — Instagram Learning Hub<br>
-      Made with 💚 for our community members
+  <footer class="border-t border-gray-200 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 needs-sidebar-gap text-center text-sm text-gray-500">
+      <span class="neon-text font-bold">Instagram Learning Hub</span><br>
+      Learn Instagram step by step through visual tutorials, practical examples, and beginner-friendly guidance.
     </div>
   </footer>
 
   <script>
     // ===== SECTION DATA =====
+    // Each section maps to a local MP4 tutorial video.
+    // Replace the 'video' paths with your real recorded MP4 files.
+    // The 'poster' is shown before the user taps play.
     const sectionData = [{
-      id: 'intro', num: '2', label: 'What is Instagram',
-      badge: '📱 Section 2',
+      id: 'intro', num: '1', label: 'What is Instagram', hidePhone: true,
+      badge: ' Section 1',
       title: 'What is Instagram?',
-      desc: 'Instagram is a free app for sharing photos, videos, and messages. It\'s where our community connects, shares wellness journeys, and inspires each other every day.',
+      desc: 'Instagram is a free app for sharing photos, videos, and messages. It\'s where you can connect with friends, share favorite moments, and discover content you love.',
       steps: [
-        'Posts — Photos & videos on your profile',
-        'Stories — Moments that disappear after 24h',
-        'Reels — Short fun videos with music',
-        'Followers — People who follow you',
-        'Likes — Tap the heart to show love',
-        'Comments — Write thoughts under posts'
+        'Posts &mdash; Photos &amp; videos on your profile',
+        'Stories &mdash; Moments that disappear after 24h',
+        'Reels &mdash; Short fun videos with music',
+        'Followers &mdash; People who follow you',
+        'Likes &mdash; Tap the heart to show love',
+        'Comments &mdash; Write thoughts under posts'
       ],
       tips: [
-        'Start by following your meetup friends',
+        'Start by following friends, family or creators you enjoy',
         'Like and comment to connect with others'
       ],
-      video: 's-9LzsvH9xw',
-      img: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&q=80',
-      imgAlt: 'Instagram features overview'
+      video: 'assets/videos/create-account.mp4',
+      poster: 'assets/images/intro-thumb.jpg'
     }, {
-      id: 'create', num: '3', label: 'Create Account',
-      badge: '📝 Section 3',
+      id: 'create', num: '2', label: 'Create Account',
+      badge: ' Section 2',
       title: 'Create Your Account',
       desc: 'Setting up Instagram takes just 5 minutes. Follow along with the video inside the phone!',
       steps: [
-        'Open Instagram → Tap "Create New Account"',
-        'Enter your mobile number or email',
-        'Type the OTP code sent to your phone',
-        'Choose a username (e.g. @yourname_wellness)',
-        'Create a strong password you\'ll remember',
-        'Add a profile photo and short bio'
+        'Open Instagram App',
+        'Tap Create New Account',
+        'Enter Mobile Number',
+        'Verify OTP',
+        'Create Username',
+        'Create Password',
+        'Add Profile Photo',
+        'Finish Setup'
       ],
       tips: [
         'Use your real name so friends can find you',
         'Write down your password somewhere safe'
       ],
-      video: 's-9LzsvH9xw',
-      img: 'https://images.unsplash.com/photo-1611605698335-8b1569810432?w=400&q=80',
-      imgAlt: 'Creating Instagram account'
+      video: 'assets/videos/create-account.mp4',
+      poster: 'assets/images/create-account-thumb.jpg',
+      stepProgress: true
     }, {
-      id: 'home', num: '4', label: 'Instagram Home',
-      badge: '🏠 Section 4',
-      title: 'Understanding the Home Screen',
-      desc: 'The home screen is your Instagram dashboard. Here\'s what everything does.',
-      steps: [
-        'Home Feed — Scroll through posts from friends',
-        'Stories Bar — Tap circles at top for quick updates',
-        'Search — Find people, places, and topics',
-        'Reels Tab — Watch short entertaining videos',
-        'Notifications — See likes, comments, and follows',
-        'Profile — Your page with all your posts'
-      ],
-      tips: [
-        'Swipe left to open the camera',
-        'Tap the heart to check notifications'
-      ],
-      video: 's-9LzsvH9xw',
-      img: 'https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=400&q=80',
-      imgAlt: 'Instagram home screen'
-    }, {
-      id: 'stories', num: '5', label: 'Stories',
-      badge: '📖 Section 5',
+      id: 'stories', num: '3', label: 'Stories',
+      badge: ' Section 3',
       title: 'Upload Stories',
-      desc: 'Stories let you share moments that disappear after 24 hours. Perfect for sharing your daily wellness activity!',
+      desc: 'Stories let you share moments that disappear after 24 hours. Perfect for sharing your daily activities with friends!',
       steps: [
         'Tap your profile pic (top-left) or swipe right',
         'Take a photo or pick one from your gallery',
@@ -414,40 +1276,38 @@
         'Tap "Your Story" to share'
       ],
       tips: [
-        'Stories are great for daily wellness updates',
+        'Stories are great for daily updates with friends',
         'Use stickers to make stories engaging'
       ],
-      video: '6P-khJVYEwM',
-      img: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=400&q=80',
-      imgAlt: 'Instagram story creation'
+      video: 'assets/videos/upload-story.mp4',
+      poster: 'assets/images/story-thumb.jpg'
     }, {
-      id: 'posts', num: '6', label: 'Posts',
-      badge: '🖼️ Section 6',
+      id: 'posts', num: '4', label: 'Posts',
+      badge: ' Section 4',
       title: 'Upload Posts',
-      desc: 'Posts stay on your profile permanently. Share your best wellness moments with the community!',
+      desc: 'Posts stay on your profile permanently. Share your best moments with everyone!',
       steps: [
         'Tap the + icon at the bottom',
         'Select a photo from your gallery',
         'Tap "Next" and apply a filter if you like',
         'Write a caption describing your post',
-        'Add hashtags like #HealthyHabitBuddy',
+        'Add hashtags like #InstagramTips',
         'Tap "Share" to publish'
       ],
       tips: [
         'Good lighting makes photos look better',
         'Write short, friendly captions'
       ],
-      video: 's-9LzsvH9xw',
-      img: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&q=80',
-      imgAlt: 'Uploading Instagram post'
+      video: 'assets/videos/upload-post.mp4',
+      poster: 'assets/images/post-thumb.jpg'
     }, {
-      id: 'reels', num: '7', label: 'Reels',
-      badge: '🎬 Section 7',
+      id: 'reels', num: '5', label: 'Reels',
+      badge: ' Section 5',
       title: 'Upload Reels',
-      desc: 'Reels are short, fun videos with music. They\'re the best way to share your wellness journey creatively!',
+      desc: 'Reels are short, fun videos with music. They\'re the best way to share your Instagram journey creatively!',
       steps: [
-        'Tap + → Select "Reel" at the bottom',
-        'Record video (tap & hold the record button)',
+        'Tap + &rarr; Select "Reel" at the bottom',
+        'Record video (tap &amp; hold the record button)',
         'Add music from the music library',
         'Add effects or speed changes',
         'Write a caption with hashtags',
@@ -457,54 +1317,40 @@
         'Film in good lighting for best quality',
         'Use trending songs to reach more people'
       ],
-      video: 'TtlTirQrcm8',
-      img: 'https://images.unsplash.com/photo-1585076641399-5c06d1b3365f?w=400&q=80',
-      imgAlt: 'Creating Instagram reel'
+      video: 'assets/videos/upload-reel.mp4',
+      poster: 'assets/images/reel-thumb.jpg'
     }, {
-      id: 'explore', num: '8', label: 'Explore',
-      badge: '🔍 Section 8',
-      title: 'Explore Page',
-      desc: 'The Explore page shows content tailored to your interests. Find wellness inspiration, yoga videos, and more!',
+      id: 'collab', num: '6', label: 'Collaboration Tag',
+      badge: ' Section 6',
+      title: 'Add Collaboration Tag on Reels',
+      desc: 'Invite another Instagram account as a collaborator on a reel so both profiles share the same content together. Great for collaborating with friends!',
       steps: [
-        'Tap the search icon at the bottom',
-        'Type "yoga" or "wellness" in the search bar',
-        'Browse photos, reels, and accounts',
-        'Follow new accounts that inspire you',
-        'Save posts you like for later'
+        'Create or upload a reel normally',
+        'Tap "Tag People" option',
+        'Tap "Invite Collaborator"',
+        'Search your partner\'s Instagram username',
+        'Select the correct profile',
+        'Tap Done &rarr; Share the reel',
+        'When accepted, reel appears on BOTH profiles'
       ],
       tips: [
-        'Explore helps you discover our community posts',
-        'Search #HealthyHabitBuddy to see group content'
+        'Collaboration reels help both people reach more viewers',
+        'Great for collaborating with friends and creators',
+        'Ask your partner to accept the collaboration request',
+        'Use collaboration reels to grow your audience together'
       ],
-      video: 's-9LzsvH9xw',
-      img: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=400&q=80',
-      imgAlt: 'Instagram explore page'
+      video: 'assets/videos/collab-reel.mp4',
+      poster: 'assets/images/collab-thumb.jpg',
+      scenes: [
+        { label: 'Invite Collaborator', html: '<div class="ig-scene"><div class="ig-top-bar"><span>New Reel</span><span style="color:#405DE6;font-weight:700">Share</span></div><div class="ig-content ig-center"><div class="ig-modal"><div class="ig-invite-btn ig-pulse">+ Invite Collaborator</div><p style="color:#999;font-size:9px;margin-top:8px">Share together with your partner </p></div></div></div>' }
+      ]
     }, {
-      id: 'msgs', num: '9', label: 'Messages',
-      badge: '💬 Section 9',
-      title: 'Instagram Messages',
-      desc: 'Send private messages, share posts, and connect with friends directly on Instagram.',
-      steps: [
-        'Tap the messenger icon (top-right)',
-        'Tap a conversation or tap + for new message',
-        'Type your message and tap send',
-        'Tap the camera icon to send a photo',
-        'React to messages with emojis'
-      ],
-      tips: [
-        'You can share reels directly in messages',
-        'Use voice messages for a personal touch'
-      ],
-      video: 's-9LzsvH9xw',
-      img: 'https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=400&q=80',
-      imgAlt: 'Instagram messages'
-    }, {
-      id: 'settings', num: '10', label: 'Settings',
-      badge: '⚙️ Section 10',
-      title: 'Settings & Privacy',
+      id: 'settings', num: '7', label: 'Settings',
+      badge: ' Section 7',
+      title: 'Settings &amp; Privacy',
       desc: 'Keep your account safe and control who sees your content. Here are the key settings to know.',
       steps: [
-        'Profile → Tap ☰ (top-right) → Settings',
+        'Profile &rarr; Tap &#9776; (top-right) &rarr; Settings',
         'Privacy: Control who sees your posts',
         'Notifications: Choose what alerts you get',
         'Security: Two-factor authentication',
@@ -515,140 +1361,509 @@
         'Set your account to Private if you want control',
         'Turn off notifications at night for better sleep'
       ],
-      video: 's-9LzsvH9xw',
-      img: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80',
-      imgAlt: 'Instagram settings'
+      hidePhone: true
     }, {
-      id: 'tips', num: '11', label: 'Tips & Tricks',
-      badge: '💡 Section 11',
-      title: 'Tips & Tricks',
-      desc: 'Pro tips to make your Instagram content shine. Small changes make a big difference!',
+      id: 'problems', num: '8', label: 'Common Problems',
+      badge: ' Section 8',
+      title: 'Common Problems &amp; Solutions',
+      desc: 'Don\'t worry &mdash; most issues are easy to fix. Here are solutions to the most common problems.',
       steps: [
-        '🌞 Natural lighting makes photos 10x better',
-        '📱 Hold phone vertically for reels',
-        '✍️ Short captions work better than long ones',
-        '🏷️ Use 3-5 relevant hashtags per post',
-        '💬 Reply to comments to build community',
-        '📅 Post consistently — even once a week helps'
-      ],
-      tips: [
-        'Post when your friends are active (evening works well)',
-        'Quality over quantity — one good post is better than five average ones'
-      ],
-      video: 's-9LzsvH9xw',
-      img: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&q=80',
-      imgAlt: 'Instagram tips'
-    }, {
-      id: 'campaign', num: '12', label: 'HHB Campaign',
-      badge: '🏆 Section 12',
-      title: 'Healthy Habit Buddy Campaign',
-      desc: 'Join our community campaign! Share your wellness journey and inspire others in the group.',
-      steps: [
-        'Record a video of your wellness activity',
-        'Write "Join the #HealthyHabitBuddy Challenge!"',
-        'Tag @healthyhabbitbuddy in your post',
-        'Invite a friend to collaborate on the reel',
-        'Share your story and encourage others'
-      ],
-      tips: [
-        'Start simple — a 30-second walking video is perfect',
-        'Tag 2 friends to spread the challenge'
-      ],
-      video: 's-9LzsvH9xw',
-      img: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&q=80',
-      imgAlt: 'Wellness community'
-    }, {
-      id: 'problems', num: '13', label: 'Common Problems',
-      badge: '🆘 Section 13',
-      title: 'Common Problems & Solutions',
-      desc: 'Don\'t worry — most issues are easy to fix. Here are solutions to the most common problems.',
-      steps: [
-        '🔑 Forgot Password → Tap "Forgot?" on login → Reset via email/phone',
-        '📤 Story Won\'t Upload → Check WiFi → Restart app → Video under 60s',
-        '🎵 Music Unavailable → Try different song → Check region settings',
-        '🎥 Blurry Reel → Clean lens → Good lighting → Hold phone steady',
-        '❌ Upload Failed → Check storage → Restart app → Try again',
-        '🐌 App Slow → Clear cache → Update app → Restart phone'
+        ' Forgot Password &rarr; Tap "Forgot?" on login &rarr; Reset via email/phone',
+        ' Story Won\'t Upload &rarr; Check WiFi &rarr; Restart app &rarr; Video under 60s',
+        ' Music Unavailable &rarr; Try different song &rarr; Check region settings',
+        ' Blurry Reel &rarr; Clean lens &rarr; Good lighting &rarr; Hold phone steady',
+        ' Upload Failed &rarr; Check storage &rarr; Restart app &rarr; Try again',
+        ' App Slow &rarr; Clear cache &rarr; Update app &rarr; Restart phone'
       ],
       tips: [
         'Restarting the app fixes most issues',
         'Keep your app updated for best performance'
       ],
-      video: 's-9LzsvH9xw',
-      img: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=80',
-      imgAlt: 'Getting help with Instagram'
+      hidePhone: true
     }];
 
     // ===== PRACTICE DATA =====
     const practiceTasks = [
-      '📱 Create your Instagram account',
-      '📖 Upload your first story',
-      '🎬 Upload your first reel',
-      '🤝 Add a collaborator to a reel',
-      '🏆 Share your meetup experience'
+      ' Create your Instagram account',
+      ' Upload your first story',
+      ' Upload your first reel',
+      ' Add a collaborator to a reel',
+      ' Share your Instagram journey'
     ];
     let practiceDone = [false, false, false, false, false];
+
+    // ===== SET UP VIDEO PLAYERS =====
+    // Attach events to all video players. Sources are already inline in HTML.
+    function initVideoPlayers() {
+      document.querySelectorAll('.video-player').forEach(container => {
+        const posterPath = container.dataset.poster;
+        const video = container.querySelector('video');
+        const poster = container.querySelector('.video-poster');
+        const replay = container.querySelector('.replay-overlay');
+        const error = container.querySelector('.video-error');
+
+        if (!video) return;
+
+        // --- Video events ---
+        video.addEventListener('play', () => {
+          if (poster) poster.classList.add('hidden');
+          if (replay) replay.classList.remove('show');
+        });
+
+        video.addEventListener('ended', () => {
+          if (replay) replay.classList.add('show');
+        });
+
+        video.addEventListener('error', () => {
+          if (poster) poster.classList.add('hidden');
+          if (error) error.classList.remove('hidden');
+        });
+
+        video.addEventListener('stalled', () => {
+          if (!video.readyState && error) {
+            error.classList.remove('hidden');
+            if (poster) poster.classList.add('hidden');
+          }
+        });
+
+        setTimeout(() => {
+          if (video.readyState === 0 && error) {
+            error.classList.remove('hidden');
+            if (poster) poster.classList.add('hidden');
+          }
+        }, 3000);
+      });
+    }
+
+    // ===== HANDLE PLAY CLICK =====
+    function handlePlayClick(posterEl) {
+      const container = posterEl.closest('.video-player');
+      if (!container) return;
+      const video = container.querySelector('video');
+      const error = container.querySelector('.video-error');
+      const replay = container.querySelector('.replay-overlay');
+
+      if (!video) return;
+
+      // If video had an error but user clicked, try again
+      if (error && !error.classList.contains('hidden')) {
+        error.classList.add('hidden');
+        video.load();
+        setTimeout(() => {
+          video.play().catch(() => {});
+        }, 300);
+        return;
+      }
+
+      // Hide replay if showing
+      if (replay) replay.classList.remove('show');
+
+      video.load();
+      video.play().catch(() => {
+        video.load();
+        setTimeout(() => {
+          video.play().catch(() => {
+            if (error) {
+              error.classList.remove('hidden');
+              if (posterEl) posterEl.classList.add('hidden');
+            }
+          });
+        }, 500);
+      });
+    }
+
+    // ===== HANDLE REPLAY CLICK =====
+    function handleReplayClick(replayEl) {
+      const container = replayEl.closest('.video-player');
+      if (!container) return;
+      const video = container.querySelector('video');
+      const poster = container.querySelector('.video-poster');
+      const error = container.querySelector('.video-error');
+
+      if (!video) return;
+
+      replayEl.classList.remove('show');
+      if (poster) poster.classList.remove('hidden');
+      if (error) error.classList.add('hidden');
+
+      video.pause();
+      video.currentTime = 0;
+      video.load();
+
+      setTimeout(() => {
+        video.play().catch(() => {});
+      }, 400);
+    }
 
     // ===== RENDER SECTIONS =====
     function renderSections() {
       const container = document.getElementById('sectionsContainer');
-      container.innerHTML = sectionData.map((s, i) => `
+      const progress = loadProgress();
+      container.innerHTML = sectionData.map((s, i) => {
+        const isCompleted = progress.completed.includes('s-' + s.id);
+        const prevSection = i > 0 ? sectionData[i - 1] : null;
+        const nextSection = i < sectionData.length - 1 ? sectionData[i + 1] : null;
+        const isLast = i === sectionData.length - 1;
+        return `
         <section id="s-${s.id}" class="py-14 sm:py-20 relative overflow-hidden">
-          <div class="glow-orb w-[300px] h-[300px] bg-emerald-500 ${i % 2 === 0 ? 'right-[-80px]' : 'left-[-80px]'} top-[10%]"></div>
+          <div class="glow-orb w-[300px] h-[300px] ${i % 2 === 0 ? 'right-[-80px]' : 'left-[-80px]'} top-[10%]" style="background: ${i % 2 === 0 ? '#E1306C' : '#833AB4'}; opacity: .06;"></div>
           <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-            <div class="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
-              <!-- Left -->
-              <div class="reveal-left order-2 lg:order-1">
-                <span class="badge-premium">${s.badge}</span>
+            <div class="${s.hidePhone ? 'flex flex-col' : 'grid lg:grid-cols-2 gap-8 lg:gap-14 items-center'}">
+              <!-- Left: Content -->
+              <div class="reveal-left ${s.hidePhone ? 'max-w-3xl mx-auto' : 'order-2 lg:order-1'}">
+                ${s.hidePhone ? `<span class="badge-premium">${s.badge}</span>` : ''}
                 <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black mt-3 mb-3">${s.title}</h2>
-                <p class="text-gray-400 mb-5 text-sm sm:text-base leading-relaxed">${s.desc}</p>
-                <div class="space-y-2 mb-5">
+                <p class="text-gray-600 mb-5 text-sm sm:text-base leading-relaxed">${s.desc}</p>
+                <div class="space-y-3 mb-5">
                   ${s.steps.map((st, si) => `<div class="flex items-start gap-3">
                     <span class="step-num flex-shrink-0">${si+1}</span>
-                    <span class="text-gray-300 py-1 text-sm sm:text-base">${st}</span>
+                    <span class="text-gray-700 py-1 text-sm sm:text-base">${st}</span>
                   </div>`).join('')}
                 </div>
-                <div class="glass p-4 rounded-xl border-l-4 border-emerald-500">
-                  <p class="text-emerald-400 text-sm font-semibold mb-1">💡 Tips</p>
-                  <ul class="text-gray-400 text-sm space-y-0.5">${s.tips.map(t => `<li>• ${t}</li>`).join('')}</ul>
-                </div>
-              </div>
-              <!-- Right: iPhone -->
-              <div class="reveal-right order-1 lg:order-2 flex justify-center">
-                <div class="iphone group">
-                  <div class="iphone-notch"><div class="iphone-notch-inner"></div></div>
-                  <div class="iphone-screen">
-                    <div class="video-player w-full h-full relative cursor-pointer" data-video="${s.video}" onclick="playVideo(this)">
-                      <div class="absolute inset-0 flex items-center justify-center bg-black/40 z-10 hover:bg-black/20 transition">
-                        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-emerald-500 flex items-center justify-center shadow-lg transform transition hover:scale-110">
-                          <svg class="w-5 h-5 sm:w-6 sm:h-6 text-black ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                        </div>
-                      </div>
-                      <img src="https://i.ytimg.com/vi/${s.video}/hqdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover" loading="lazy">
-                    </div>
+                ${s.stepProgress ? `<div class="glass-card p-4 sm:p-5 mb-5" id="stepProgress-${s.id}">
+                  ${renderStepProgress(s.steps, 0, 0, s.id)}
+                </div>` : ''}
+                <!-- Tips Card Redesigned -->
+                <div class="tips-card">
+                  <div class="tips-header">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#E1306C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0018 8 6 6 0 006 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 008.91 14"/></svg>
+                    <span style="font-size:13px;font-weight:700;color:#E1306C">Tips</span>
                   </div>
-                  <div class="iphone-home-indicator"></div>
-                  <div class="video-overlay">▶ Tap to Play</div>
+                  <ul class="text-gray-500 text-sm space-y-1.5">${s.tips.map(t => `<li style="display:flex;align-items:flex-start;gap:6px"><span style="color:#E1306C;font-weight:700;flex-shrink:0">•</span><span>${t}</span></li>`).join('')}</ul>
+                </div>
+                <!-- Mark as Completed -->
+                <div style="margin-top:16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+                  <button class="mark-complete-btn ${isCompleted ? 'done' : ''}" onclick="markSectionComplete('s-${s.id}')" id="mc-s-${s.id}">
+                    ${isCompleted ? '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>' : '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>'}
+                    ${isCompleted ? 'Completed' : 'Mark as Completed'}
+                  </button>
+                </div>
+                <!-- Previous / Next Navigation -->
+                <div class="section-nav">
+                  ${prevSection ? `<a href="#s-${prevSection.id}" class="section-nav-btn prev"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg> Previous Section</a>` : '<div class="section-nav-spacer"></div>'}
+                  ${!isLast ? `<a href="#s-${(nextSection || sectionData[i + 1]).id}" class="section-nav-btn next">Next Section <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>` : `<a href="#s-practice" class="section-nav-btn next">Practice Tasks <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>`}
                 </div>
               </div>
+              <!-- Right: iPhone with local video player OR scene phone -->
+              ${s.hidePhone ? '' : `
+              <div class="reveal-right order-1 lg:order-2 flex flex-col items-center gap-4">
+                <span class="badge-premium">${s.badge}</span>
+                ${renderPhone(s, i)}
+              </div>`}
             </div>
           </div>
         </section>
         ${i < sectionData.length - 1 ? '<div class="section-divider mx-auto max-w-5xl"></div>' : ''}
-      `).join('');
+        `;
+      }).join('');
+
+      // Initialize video players after rendering
+      setTimeout(initVideoPlayers, 50);
+
+      // Initialize step progress state for sections with stepProgress
+      sectionData.forEach(s => {
+        if (s.stepProgress) {
+          s._stepDone = s._stepDone || s.steps.map(() => false);
+        }
+      });
+    }
+
+    // ===== REUSABLE TUTORIAL VIDEO COMPONENT =====
+    // videoSrc: path to MP4 file
+    // posterSrc: path to thumbnail/poster image (with SVG fallback via onerror)
+    // Returns complete HTML for a video player inside an iPhone screen
+    function renderTutorialVideo(videoSrc, posterSrc) {
+      const fallbackPoster = posterSrc.replace('.jpg', '.svg');
+      return `
+        <div class="video-player" data-video="${videoSrc}" data-poster="${posterSrc}">
+          <video preload="metadata" playsinline controls src="${videoSrc}"></video>
+          <div class="video-poster" onclick="handlePlayClick(this)">
+            <img src="${posterSrc}" alt="Play tutorial" loading="lazy" onerror="this.src='${fallbackPoster}'">
+            <div class="play-btn-overlay">
+              <div class="play-btn-large">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+          </div>
+          <div class="replay-overlay" onclick="handleReplayClick(this)">
+            <button class="replay-btn">
+              <svg viewBox="0 0 24 24"><path d="M17.65 6.35A7.96 7.96 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+              Replay Video
+            </button>
+          </div>
+          <div class="video-error hidden">
+            <span style="font-size:28px;margin-bottom:8px"></span>
+            <p>Video not available yet</p>
+            <p style="font-size:10px;color:#555;margin-top:4px">Tutorial coming soon</p>
+          </div>
+        </div>`;
+    }
+
+    // ===== STEP PROGRESS TRACKER COMPONENT =====
+    // steps: array of step strings
+    // activeIndex: which step is currently highlighted (0-based)
+    // doneCount: how many steps are completed
+    function renderStepProgress(steps, activeIndex, doneCount, sectionId) {
+      const barPercent = steps.length > 0 ? (doneCount / steps.length) * 100 : 0;
+      return `
+        <div class="step-progress-label">Progress: ${doneCount} / ${steps.length} steps</div>
+        <div class="step-progress-bar">
+          <div class="step-progress-bar-fill" style="width:${barPercent}%"></div>
+        </div>
+        <div class="step-progress">
+          ${steps.map((step, i) => {
+            const cls = i < doneCount ? 'done' : i === activeIndex ? 'active' : '';
+            return `
+              <button class="step-progress-item ${cls}" data-step-index="${i}" onclick="toggleStepDone('${sectionId}', ${i})" type="button">
+                <div class="step-progress-num"><span>${i + 1}</span></div>
+                <span class="step-progress-text">${step}</span>
+              </button>`;
+          }).join('')}
+        </div>`;
+    }
+
+    // ===== TOGGLE STEP DONE =====
+    function toggleStepDone(sectionId, index) {
+      const section = sectionData.find(s => s.id === sectionId);
+      if (!section || !section.stepProgress) return;
+      if (!section._stepDone) {
+        section._stepDone = section.steps.map(() => false);
+      }
+      section._stepDone[index] = !section._stepDone[index];
+      const doneCount = section._stepDone.filter(Boolean).length;
+      const activeIndex = doneCount < section.steps.length ? doneCount : section.steps.length - 1;
+      const container = document.getElementById('stepProgress-' + sectionId);
+      if (container) {
+        container.innerHTML = renderStepProgress(section.steps, activeIndex, doneCount, sectionId);
+      }
+    }
+
+    // ===== RENDER IPHONE WITH TUTORIAL VIDEO =====
+    function renderPhone(s, index) {
+      const videoHtml = renderTutorialVideo(s.video, s.poster);
+      const phoneInner = s.scenes ? `
+        <div class="iphone group">
+          <div class="iphone-notch"><div class="iphone-notch-inner"></div></div>
+          <div class="iphone-screen">
+            ${videoHtml}
+          </div>
+          <div class="iphone-home-indicator"></div>
+          <div class="video-overlay"> Tap the screen to play</div>
+        </div>` : `
+        <div class="iphone group">
+          <div class="iphone-notch"><div class="iphone-notch-inner"></div></div>
+          <div class="iphone-screen">
+            ${videoHtml}
+          </div>
+          <div class="iphone-home-indicator"></div>
+          <div class="video-overlay"> Tap the screen to play</div>
+        </div>`;
+      
+      return `
+        <div class="phone-wrapper">
+          ${phoneInner}
+          <div class="phone-shadow"></div>
+        </div>`;
+    }
+
+    // ===== SWITCH SCENE (for collab) =====
+    function switchScene(sectionId, index) {
+      const section = sectionData.find(s => s.id === sectionId);
+      if (!section || !section.scenes) return;
+      const content = document.getElementById('sceneContent-' + sectionId);
+      const phone = content ? content.closest('.iphone') : null;
+      const overlay = phone ? phone.querySelector('.video-overlay') : null;
+      if (!content || !section.scenes[index]) return;
+      content.style.opacity = '0';
+      setTimeout(() => {
+        content.innerHTML = section.scenes[index].html;
+        content.style.opacity = '1';
+        if (overlay) overlay.innerHTML = ' ' + section.scenes[index].label;
+        const dots = document.querySelectorAll('#sceneDots-' + sectionId + ' .scene-dot');
+        dots.forEach((d, i) => d.classList.toggle('active', i === index));
+      }, 200);
+    }
+
+    // ===== START SCENE LOOP (for collab) =====
+    function startSceneLoop(sectionId) {
+      const section = sectionData.find(s => s.id === sectionId);
+      if (!section || !section.scenes || section.scenes.length < 2) return;
+      let idx = 0;
+      setInterval(() => {
+        idx = (idx + 1) % section.scenes.length;
+        switchScene(sectionId, idx);
+      }, 4500);
+    }
+
+    // ===== LOAD / SAVE PROGRESS =====
+    function loadProgress() {
+      try {
+        const data = localStorage.getItem('igMasteryProgress');
+        return data ? JSON.parse(data) : { completed: [], lastSection: null };
+      } catch { return { completed: [], lastSection: null }; }
+    }
+    function saveProgress(progress) {
+      try { localStorage.setItem('igMasteryProgress', JSON.stringify(progress)); } catch {}
+    }
+
+    // ===== GET TOTAL SECTIONS =====
+    function getTotalSections() {
+      return sectionData.length + 1; // 8 JS sections + 1 Practice = 9
+    }
+
+    // ===== UPDATE PROGRESS UI =====
+    function updateProgress(activeId) {
+      const progress = loadProgress();
+      const total = getTotalSections();
+      const completed = progress.completed.length;
+      const pct = Math.round((completed / total) * 100);
+
+      // Update top progress
+      document.querySelectorAll('#topProgress, #topProgressMobile').forEach(el => {
+        if (el) el.innerHTML = `
+          <div class="tp-info">
+            <div class="tp-label">Progress</div>
+            <div class="tp-count">${completed}/${total}</div>
+          </div>
+          <div class="tp-bar"><div class="tp-bar-fill" style="width:${pct}%"></div></div>`;
+      });
+
+      // Update sidebar nav
+      renderSideNav(activeId);
+
+      // Update resume banner
+      renderResumeBanner();
+    }
+
+    // ===== MARK SECTION AS COMPLETED =====
+    function markSectionComplete(sectionId) {
+      const progress = loadProgress();
+      const idx = progress.completed.indexOf(sectionId);
+      if (idx > -1) {
+        progress.completed.splice(idx, 1);
+      } else {
+        progress.completed.push(sectionId);
+      }
+      saveProgress(progress);
+
+      // Update button in current section
+      const btn = document.getElementById('mc-' + sectionId);
+      if (btn) {
+        const done = progress.completed.includes(sectionId);
+        btn.className = 'mark-complete-btn' + (done ? ' done' : '');
+        btn.innerHTML = done
+          ? '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Completed'
+          : '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Mark as Completed';
+      }
+
+      updateProgress(sectionId);
+    }
+
+    // ===== RESUME BANNER =====
+    function renderResumeBanner() {
+      const progress = loadProgress();
+      const banner = document.getElementById('resumeBanner');
+      if (!banner) return;
+      if (progress.lastSection && progress.lastSection !== 's-intro') {
+        const allSections = [
+          ...sectionData.map(s => ({ id: 's-' + s.id, label: s.label })),
+          { id: 's-practice', label: 'Practice Tasks' }
+        ];
+        const sec = allSections.find(s => s.id === progress.lastSection);
+        if (sec) {
+          banner.style.display = 'flex';
+          banner.innerHTML = `<a href="#${sec.id}" class="resume-banner">
+            <svg class="w-5 h-5" style="color:#E1306C" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <div><div style="font-size:13px;font-weight:700;color:#E1306C">Resume Learning</div><div style="font-size:11px;color:rgba(0,0,0,.4)">Continue from ${sec.label}</div></div>
+            <svg class="w-4 h-4" style="color:#E1306C" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>`;
+          return;
+        }
+      }
+      banner.style.display = 'none';
     }
 
     // ===== RENDER SIDE NAV =====
-    function renderSideNav() {
+    function renderSideNav(activeId) {
       const nav = document.getElementById('sideNav');
+      if (!nav) return;
+      const progress = loadProgress();
+      const total = getTotalSections();
+      const completed = progress.completed.length;
+      const pct = Math.round((completed / total) * 100);
+      const msg = completed === 0 ? 'Ready to start learning!' :
+                  completed === total ? 'Amazing! All done! 🎉' :
+                  completed >= Math.ceil(total / 2) ? 'Great job! Keep going 🎉' :
+                  'You\'re making progress!';
+
       const all = [
-        { id: 'hero', label: 'Home' },
-        ...sectionData.map(s => ({ id: `s-${s.id}`, label: s.label })),
-        { id: 's-practice', label: 'Practice' }
+        ...sectionData.map(s => ({ id: 's-' + s.id, num: s.num, label: s.label })),
+        { id: 's-practice', num: '9', label: 'Practice Tasks' }
       ];
-      nav.innerHTML = all.map(item =>
-        `<a href="#${item.id}" class="nav-dot" title="${item.label}"></a>`
-      ).join('');
+
+      nav.innerHTML = `
+        <div class="space-y-4" style="width:248px">
+          <!-- Progress Card -->
+          <div class="course-progress-card">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="course-progress-ring">
+                <svg width="60" height="60" viewBox="0 0 60 60">
+                  <defs>
+                    <linearGradient id="instaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#F58529"/>
+                      <stop offset="50%" stop-color="#DD2A7B"/>
+                      <stop offset="100%" stop-color="#8134AF"/>
+                    </linearGradient>
+                  </defs>
+                  <circle class="bg-circle" cx="30" cy="30" r="24"/>
+                  <circle class="fg-circle" cx="30" cy="30" r="24" stroke-dasharray="150.8" stroke-dashoffset="${150.8 - (150.8 * pct / 100)}"/>
+                </svg>
+                <span class="course-progress-pct">${pct}%</span>
+              </div>
+              <div style="flex:1;min-width:0">
+                <div style="font-size:13px;font-weight:700;color:#262626">Course Progress</div>
+                <div style="font-size:11px;color:rgba(0,0,0,.4);margin-top:2px">${completed} / ${total} Sections</div>
+              </div>
+            </div>
+            <div style="font-size:12px;color:rgba(225,48,108,.7);font-weight:600;text-align:center">${msg}</div>
+          </div>
+
+          <!-- Course Content -->
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:rgba(0,0,0,.3);padding:0 4px">Course Content</div>
+          <div class="space-y-0.5">
+            ${all.map(item => {
+              const isActive = activeId === item.id;
+              const isCompleted = progress.completed.includes(item.id);
+              return `<a href="#${item.id}" class="course-content-item ${isActive ? 'active' : ''}" data-section-id="${item.id}" onclick="closeSidebarDrawer()">
+                <span class="item-icon">
+                  ${isCompleted
+                    ? '<svg class="w-4 h-4" style="color:#10B981" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>'
+                    : '<span style="color:rgba(0,0,0,.15);font-size:12px;font-weight:600">' + item.num + '</span>'}
+                </span>
+                <span style="flex:1;min-width:0">${item.label}</span>
+              </a>`;
+            }).join('')}
+          </div>
+
+          <!-- Certificate Preview -->
+          <div class="certificate-card ${completed === total ? 'unlocked' : 'locked'}">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#FFD700,#FFA500);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">🏆</div>
+              <div style="flex:1;min-width:0">
+                <div style="font-size:12px;font-weight:700;color:#B8860B">Instagram Basics</div>
+                <div style="font-size:10px;color:rgba(0,0,0,.4);margin-top:1px">${completed === total ? '✓ Certificate Ready!' : 'Complete all sections to unlock'}</div>
+              </div>
+            </div>
+            ${completed > 0 && completed < total ? `
+            <div style="margin-top:10px">
+              <div style="height:3px;background:rgba(255,215,0,.2);border-radius:2px;overflow:hidden">
+                <div style="height:100%;width:${pct}%;background:linear-gradient(90deg,#FFD700,#FFA500);border-radius:2px;transition:width .6s ease"></div>
+              </div>
+              <div style="font-size:9px;color:rgba(0,0,0,.3);text-align:right;margin-top:3px">${pct}% complete</div>
+            </div>` : ''}
+          </div>
+        </div>
+      `;
     }
 
     // ===== RENDER HERO DOTS =====
@@ -658,16 +1873,99 @@
         { id: 's-practice' }
       ];
       document.getElementById('heroDots').innerHTML = all.map(item =>
-        `<a href="#${item.id}" class="w-2 h-2 rounded-full bg-white/20 hover:bg-emerald-400 transition-all"></a>`
+        `<a href="#${item.id}" class="w-2 h-2 rounded-full bg-gray-300 hover:bg-pink-500 transition-all"></a>`
       ).join('');
+    }
+
+    // ===== SEARCH =====
+    function handleSearch(query) {
+      const dropdown = document.getElementById('searchResults');
+      if (!query.trim()) { dropdown.classList.remove('show'); return; }
+
+      const q = query.toLowerCase();
+      const all = [
+        ...sectionData.map(s => ({ id: 's-' + s.id, num: s.num, label: s.label, desc: s.desc })),
+        { id: 's-practice', num: '9', label: 'Practice Tasks', desc: 'Complete practice tasks to test your knowledge' }
+      ];
+
+      const results = all.filter(item =>
+        item.label.toLowerCase().includes(q) ||
+        item.desc.toLowerCase().includes(q) ||
+        ('section ' + item.num).includes(q)
+      );
+
+      if (results.length === 0) {
+        dropdown.innerHTML = '<div class="search-no-results">No results found</div>';
+      } else {
+        dropdown.innerHTML = results.map(r => `
+          <a href="#${r.id}" class="search-result-item" onclick="document.getElementById('searchInput').value='';document.getElementById('searchResults').classList.remove('show')">
+            <span class="sri-icon">${r.num}</span>
+            <span class="sri-label">${r.label}</span>
+          </a>
+        `).join('');
+      }
+      dropdown.classList.add('show');
+    }
+
+    // Close search dropdown on click outside
+    document.addEventListener('click', function(e) {
+      const sb = document.getElementById('searchBar');
+      if (sb && !sb.contains(e.target)) {
+        document.getElementById('searchResults')?.classList.remove('show');
+      }
+    });
+
+    // ===== SIDEBAR STATE MANAGEMENT =====
+    function updateSidebarState(sectionId) {
+      if (!sectionId || sectionId === 'hero') {
+        document.body.classList.remove('sidebar-collapsed', 'sidebar-drawer-open');
+        return;
+      }
+      if (sectionId === 's-practice') {
+        document.body.classList.remove('sidebar-collapsed', 'sidebar-drawer-open');
+        return;
+      }
+      const sectionKey = sectionId.replace('s-', '');
+      const section = sectionData.find(s => s.id === sectionKey);
+      if (section && section.hidePhone) {
+        document.body.classList.remove('sidebar-collapsed', 'sidebar-drawer-open');
+      } else {
+        document.body.classList.add('sidebar-collapsed');
+        document.body.classList.remove('sidebar-drawer-open');
+      }
+    }
+
+    function toggleSidebarDrawer() {
+      const isOpen = document.body.classList.contains('sidebar-drawer-open');
+      if (isOpen) {
+        closeSidebarDrawer();
+      } else {
+        openSidebarDrawer();
+      }
+    }
+
+    function openSidebarDrawer() {
+      document.body.classList.remove('sidebar-collapsed');
+      document.body.classList.add('sidebar-drawer-open');
+    }
+
+    function closeSidebarDrawer() {
+      document.body.classList.remove('sidebar-drawer-open');
+      // Re-check current section for correct collapsed state
+      const visible = document.querySelector('section[id].visible');
+      if (visible) updateSidebarState(visible.id);
+      else document.body.classList.add('sidebar-collapsed');
     }
 
     // ===== RENDER PRACTICE =====
     function renderPractice() {
       const list = document.getElementById('practiceList');
       list.innerHTML = practiceTasks.map((t, i) => `
-        <label class="check-item flex items-center gap-3 p-3 rounded-xl glass cursor-pointer transition hover:bg-white/5 ${practiceDone[i] ? 'done' : ''}">
-          <span class="check-box w-5 h-5 rounded-md border-2 ${practiceDone[i] ? 'bg-emerald-500 border-emerald-500' : 'border-white/20'} flex items-center justify-center transition-all flex-shrink-0">
+        <label class="check-item flex items-center gap-3 p-3 rounded-xl bg-white border transition cursor-pointer hover:shadow-md ${practiceDone[i] ? 'done' : ''}" style="border-color:rgba(0,0,0,.08);">
+          <span class="check-box w-5 h-5 rounded-md border-2 flex items-center justify-center transition-all flex-shrink-0" style="${practiceDone[i] ? 'background:#E1306C;border-color:#E1306C;' : 'border-color:#DBDBDB;'}">
+            ${practiceDone[i] ? '<svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>' : ''}
+          </span>
+          <span class="text-gray-700 select-none text-sm sm:text-base">${t}</span>
             ${practiceDone[i] ? '<svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>' : ''}
           </span>
           <span class="text-gray-300 select-none text-sm sm:text-base">${t}</span>
@@ -676,7 +1974,6 @@
       const done = practiceDone.filter(Boolean).length;
       document.getElementById('practiceCount').textContent = `${done} / ${practiceTasks.length} done`;
       document.getElementById('practiceBar').style.width = `${(done / practiceTasks.length) * 100}%`;
-      // Click handlers
       list.querySelectorAll('.check-item').forEach((el, i) => {
         el.addEventListener('click', () => { practiceDone[i] = !practiceDone[i]; renderPractice(); });
       });
@@ -689,38 +1986,80 @@
 
     // ===== INTERSECTION OBSERVER =====
     function setupObservers() {
+      let lastActiveId = null;
+
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(e => {
           if (e.isIntersecting) {
             e.target.classList.add('visible');
-            // Update active nav dot
             const id = e.target.closest('section')?.id || e.target.id;
-            document.querySelectorAll('.nav-dot').forEach(d => {
-              d.classList.toggle('active', d.getAttribute('href') === '#' + id);
-            });
+            if (id && id !== lastActiveId) {
+              lastActiveId = id;
+
+              // Update sidebar active state
+              document.querySelectorAll('.course-content-item').forEach(item => {
+                item.classList.toggle('active', item.dataset.sectionId === id);
+              });
+
+              // Update old nav-dots for hero section
+              document.querySelectorAll('.nav-dot').forEach(d => {
+                d.classList.toggle('active', d.getAttribute('href') === '#' + id);
+              });
+
+              // Update sidebar collapsed state
+              updateSidebarState(id);
+
+              // Save last section (skip hero)
+              if (id !== 'hero') {
+                const progress = loadProgress();
+                progress.lastSection = id;
+                saveProgress(progress);
+              }
+            }
           }
         });
       }, { threshold: .15 });
 
       document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
-
-      // Observe sections for nav highlighting
       document.querySelectorAll('section[id]').forEach(el => observer.observe(el));
     }
 
-    // ===== VIDEO PLAYER =====
-    function playVideo(el) {
-      const vid = el.dataset.video;
-      if (!vid || el.querySelector('iframe')) return;
-      el.innerHTML = `<iframe src="https://www.youtube.com/embed/${vid}?autoplay=1" title="Instagram Tutorial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="pointer-events-auto"></iframe>`;
-    }
+    // Mobile menu close on link click
+    document.getElementById('mobileMenu')?.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        document.getElementById('mobileMenu')?.classList.add('hidden');
+      });
+    });
+
+    // Search escape key
+    document.getElementById('searchInput')?.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        this.blur();
+        document.getElementById('searchResults')?.classList.remove('show');
+      }
+    });
 
     // ===== INIT =====
     renderSections();
-    renderSideNav();
+    updateProgress();
     renderHeroDots();
     renderPractice();
     setupObservers();
+
+    // Set initial active sidebar state and collapse state
+    setTimeout(() => {
+      const visible = document.querySelector('section[id].visible');
+      if (visible) {
+        const id = visible.id;
+        document.querySelectorAll('.course-content-item').forEach(item => {
+          item.classList.toggle('active', item.dataset.sectionId === id);
+        });
+        updateSidebarState(id);
+      } else {
+        // Hero is default visible state
+        updateSidebarState('hero');
+      }
+    }, 300);
   </script>
 </body>
 </html>
