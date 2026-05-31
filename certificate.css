@@ -47,42 +47,63 @@
 
 .certificate {
   width: 850px; max-width: 100%;
-  background: #ffffff;
-  padding: 20px 32px;
+  background: transparent;
+  padding: 0;
   position: relative;
   box-shadow: 0 20px 60px rgba(0,0,0,.12);
   overflow: hidden;
   border-radius: 0;
 }
 
-/* ===== BORDER SYSTEM ===== */
-/* Outer thick Instagram gradient border (10px) */
-.certificate::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(135deg, #F77737 0%, #E1306C 35%, #833AB4 65%, #405DE6 100%);
-  z-index: 0;
-  pointer-events: none;
+/* ===== IMAGE-BASED CERTIFICATE ===== */
+.cert-image-wrap {
+  position: relative;
+  width: 100%;
+  line-height: 0;
 }
-/* White fill inside gradient */
-.certificate::after {
-  content: '';
-  position: absolute;
-  top: 10px; left: 10px; right: 10px; bottom: 10px;
-  background: #ffffff;
-  z-index: 0;
-  pointer-events: none;
+.cert-bg-img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
-/* Inner thin gold line */
-.cert-inner-border {
+.cert-name-overlay {
   position: absolute;
-  top: 13px; left: 13px; right: 13px; bottom: 13px;
-  border: 1px solid #c9a84c;
-  z-index: 0;
-  pointer-events: none;
-  opacity: .6;
+  top: 53%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(28px, 5.5vw, 56px);
+  color: #1a1a2e;
+  text-align: center;
+  white-space: nowrap;
+  width: 80%;
+  line-height: 1.15;
+  text-shadow: 0 1px 3px rgba(255,255,255,0.9);
+  letter-spacing: 1px;
+  z-index: 2;
 }
+.cert-id-overlay {
+  position: absolute;
+  bottom: 14%;
+  right: 8%;
+  font-family: 'Courier New', monospace;
+  font-size: clamp(9px, 1vw, 13px);
+  color: rgba(0,0,0,0.45);
+  letter-spacing: 0.5px;
+  z-index: 2;
+  text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+}
+.cert-date-overlay {
+  position: absolute;
+  bottom: 14%;
+  left: 8%;
+  font-size: clamp(9px, 1vw, 13px);
+  color: rgba(0,0,0,0.45);
+  font-weight: 500;
+  z-index: 2;
+  text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+}
+
 /* Fancy ornamental curved corners */
 .cert-corner {
   position: absolute;
@@ -577,53 +598,26 @@
 }
 
 @media (max-width: 640px) {
-  .certificate { padding: 14px 14px; }
-  .cert-header { flex-direction: column; gap: 4px; align-items: center; padding-bottom: 4px; }
-  .cert-header-center { position: static; transform: none; }
-  .cert-header-right { display: none; }
-  .cert-body-title { font-size: 16px; letter-spacing: 1.5px; }
-  .cert-body-org { font-size: 14px; }
-  .cert-body-name { font-size: 28px; }
-  .cert-body-desc { font-size: 9px; max-width: 100%; }
-  .cert-features { gap: 3px 5px; max-width: 100%; }
-  .cert-feature-item { padding: 3px 6px; }
-  .cert-feature-icon-circle { width: 18px; height: 18px; }
-  .cert-feature-label { font-size: 7px; }
-  .cert-feature-sublabel { display: none; }
-  .cert-footer { flex-wrap: wrap; gap: 6px; justify-content: center; padding: 6px 10px; }
-  .cert-footer-col { text-align: center; }
-  .cert-footer-sig-col { text-align: center; }
-  .cert-sig-line { margin: 0 auto 1px; }
-  .cert-trophy-icon { font-size: 26px; }
-  .cert-laurel { width: 28px; height: 18px; }
+  .certificate { padding: 0; }
+  .cert-name-overlay { font-size: clamp(15px, 3vw, 30px); }
+  .cert-id-overlay { bottom: 10%; right: 5%; font-size: clamp(7px, 1.5vw, 10px); }
+  .cert-date-overlay { bottom: 10%; left: 5%; font-size: clamp(7px, 1.5vw, 10px); }
   .cert-actions { flex-direction: column; align-items: center; }
   .cert-btn { width: 100%; justify-content: center; }
   .cert-lock-icon { font-size: 48px; }
   .cert-celebration-icon { font-size: 56px; }
   .cert-modal-content { padding: 20px; }
   .cert-modal-actions { flex-direction: column; }
-  .cert-corner { width: 18px; height: 18px; }
-  .cert-corner-tl { top: 12px; left: 12px; border-width: 1.5px; }
-  .cert-corner-tr { top: 12px; right: 12px; border-width: 1.5px; }
-  .cert-corner-bl { bottom: 12px; left: 12px; border-width: 1.5px; }
-  .cert-corner-br { bottom: 12px; right: 12px; border-width: 1.5px; }
-  .cert-bg-insta-left { display: none; }
-  .cert-bg-heart { display: none; }
-  .cert-ribbon-wing { width: 16px; }
-  .cert-gold-medal { width: 36px; height: 36px; }
-  .cert-medal-circle { width: 28px; height: 28px; font-size: 14px; }
-  .cert-medal-star { font-size: 12px; }
-  .cert-medal-ribbon { width: 6px; height: 10px; bottom: -5px; }
-  .cert-medal-ribbon-l { left: 5px; }
-  .cert-medal-ribbon-r { right: 5px; }
 }
-
-@media (min-width: 641px) and (max-width: 900px) {
-  .certificate { padding: 18px 18px; }
-  .cert-body-title { font-size: 22px; }
-  .cert-body-name { font-size: 34px; }
-  .cert-footer { flex-wrap: wrap; gap: 8px; }
-  .cert-bg-insta-left { width: 70px; height: 70px; }
+@media (max-width: 480px) {
+  .cert-name-overlay { font-size: clamp(12px, 4vw, 22px); }
+  .cert-id-overlay { bottom: 8%; right: 4%; font-size: clamp(6px, 1.8vw, 8px); }
+  .cert-date-overlay { bottom: 8%; left: 4%; font-size: clamp(6px, 1.8vw, 8px); }
+  .cert-lock-icon { font-size: 36px; }
+  .cert-celebration-icon { font-size: 42px; }
+  .cert-name-input { font-size: 14px; padding: 10px 14px; }
+  .cert-btn { padding: 10px 20px; font-size: 13px; }
+  .cert-modal-content { padding: 14px; }
 }
 
 /* ===== PRINT STYLES ===== */
@@ -644,9 +638,7 @@
     width: 100% !important;
     max-width: 850px !important;
   }
-  .certificate::before { display: block !important; }
-  .certificate::after { display: block !important; }
-  .cert-inner-border { display: block !important; }
+  .cert-name-overlay { display: block !important; }
   .cert-preview-wrapper { padding: 0 !important; }
   #s-certificate { padding: 0 !important; }
   .needs-sidebar-gap { padding-left: 0 !important; }

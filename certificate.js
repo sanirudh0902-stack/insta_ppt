@@ -150,7 +150,6 @@ function handleGenerateCertificate() {
 }
 
 function showCertificatePreview(container) {
-  const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
   const shortDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 
   container.innerHTML = `
@@ -160,173 +159,12 @@ function showCertificatePreview(container) {
     </div>
     <div class="cert-preview-wrapper">
       <div class="certificate" id="certificateDownload">
-        <div class="cert-inner-border"></div>
-        <div class="cert-corner cert-corner-tl"></div>
-        <div class="cert-corner cert-corner-tr"></div>
-        <div class="cert-corner cert-corner-bl"></div>
-        <div class="cert-corner cert-corner-br"></div>
-
-        <div class="cert-bg-elem cert-bg-insta-left">
-          <svg viewBox="0 0 100 100" width="100%" height="100%" fill="none">
-            <rect x="5" y="5" width="90" height="90" rx="22" stroke="#E1306C" stroke-width="1.2"/>
-            <circle cx="50" cy="50" r="22" stroke="#E1306C" stroke-width="1.2"/>
-            <circle cx="76" cy="24" r="6" fill="#E1306C"/>
-          </svg>
+        <div class="cert-image-wrap">
+          <img src="assets/videos/ig_certicate.jpeg" alt="Certificate of Completion" class="cert-bg-img">
+          <div class="cert-name-overlay">${escHtml(certUserName)}</div>
+          <div class="cert-id-overlay">${certId}</div>
+          <div class="cert-date-overlay">${shortDate}</div>
         </div>
-        <div class="cert-bg-elem cert-bg-heart">
-          <svg viewBox="0 0 40 40" width="100%" height="100%" fill="none">
-            <path d="M20 34s-14-8-14-18c0-5 4-9 9-9 3 0 5 1.5 5 1.5s2-1.5 5-1.5c5 0 9 4 9 9 0 10-14 18-14 18z" stroke="#E1306C" stroke-width="1.5"/>
-          </svg>
-        </div>
-        <div class="cert-bg-elem cert-bg-sparkle cert-bg-sparkle-1"></div>
-        <div class="cert-bg-elem cert-bg-sparkle cert-bg-sparkle-2"></div>
-
-        <div class="cert-header">
-          <div class="cert-header-left">
-            <div class="cert-habuild-circle">
-              <span class="cert-habuild-icon">H</span>
-            </div>
-          </div>
-          <div class="cert-header-center">
-            <div class="cert-insta-row">
-              <span class="cert-insta-icon-large">
-                <svg viewBox="0 0 24 24" width="26" height="26" fill="none">
-                  <rect x="2" y="2" width="20" height="20" rx="5" stroke="url(#igGrad)" stroke-width="1.8"/>
-                  <circle cx="12" cy="12" r="5" stroke="url(#igGrad)" stroke-width="1.8"/>
-                  <circle cx="18" cy="6" r="1.5" fill="url(#igGrad)"/>
-                  <defs><linearGradient id="igGrad" x1="0" y1="0" x2="24" y2="24"><stop offset="0%" stop-color="#F77737"/><stop offset="50%" stop-color="#E1306C"/><stop offset="100%" stop-color="#833AB4"/></linearGradient></defs>
-                </svg>
-              </span>
-              <span class="cert-insta-title">Instagram Mastery</span>
-            </div>
-            <div class="cert-insta-sub">Learn \u2022 Create \u2022 Share \u2022 Grow</div>
-          </div>
-          <div class="cert-header-right">
-            <div class="cert-heart-icon">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
-                <path d="M12 21s-8-5-8-12c0-3.5 2.8-6 6-6 2 0 4 1 4 1s2-1 4-1c3.2 0 6 2.5 6 6 0 7-8 12-8 12z" fill="#FF6B9D" stroke="#E1306C" stroke-width="1"/>
-              </svg>
-            </div>
-          </div>
-        </div>
-
-        <div class="cert-trophy-wrap">
-          <span class="cert-laurel">
-            <svg viewBox="0 0 50 30" width="100%" height="100%" fill="none">
-              <path d="M25 30c-4-6-8-16-4-24 0 0 4 10 8 14s6 6 6 6-4 4-10 4z" fill="#c9a84c" opacity=".6"/>
-              <path d="M25 30c4-6 8-16 4-24 0 0-4 10-8 14s-6 6-6 6 4 4 10 4z" fill="#c9a84c" opacity=".4"/>
-              <path d="M25 30c-2-4-5-12-2-20l1 3c-1 6 1 12 1 12s2 3 0 5z" fill="#c9a84c" opacity=".7"/>
-              <path d="M25 30c2-4 5-12 2-20l-1 3c1 6-1 12-1 12s-2 3 0 5z" fill="#c9a84c" opacity=".5"/>
-            </svg>
-          </span>
-          <span class="cert-trophy-icon">\uD83C\uDFC6</span>
-          <span class="cert-laurel cert-laurel-right">
-            <svg viewBox="0 0 50 30" width="100%" height="100%" fill="none">
-              <path d="M25 30c-4-6-8-16-4-24 0 0 4 10 8 14s6 6 6 6-4 4-10 4z" fill="#c9a84c" opacity=".6"/>
-              <path d="M25 30c4-6 8-16 4-24 0 0-4 10-8 14s-6 6-6 6 4 4 10 4z" fill="#c9a84c" opacity=".4"/>
-              <path d="M25 30c-2-4-5-12-2-20l1 3c-1 6 1 12 1 12s2 3 0 5z" fill="#c9a84c" opacity=".7"/>
-              <path d="M25 30c2-4 5-12 2-20l-1 3c1 6-1 12-1 12s-2 3 0 5z" fill="#c9a84c" opacity=".5"/>
-            </svg>
-          </span>
-        </div>
-
-        <div class="cert-gold-divider-wrap">
-          <div class="cert-gold-line"></div>
-          <span class="cert-gold-diamond">\u25C6</span>
-          <div class="cert-gold-line"></div>
-        </div>
-
-        <div class="cert-body">
-          <div class="cert-body-title">CERTIFICATE OF COMPLETION</div>
-          <div class="cert-body-awarded-by">This certificate is proudly awarded by</div>
-          <div class="cert-body-org">HABUILD</div>
-          <div class="cert-ribbon">
-            <div class="cert-ribbon-wing"></div>
-            <span class="cert-ribbon-center">to</span>
-            <div class="cert-ribbon-wing cert-ribbon-wing-right"></div>
-          </div>
-          <div class="cert-body-name">${escHtml(certUserName)}</div>
-          <div class="cert-name-divider"></div>
-          <div class="cert-body-desc">For successfully completing the <span class="cert-desc-highlight">Instagram Mastery Learning Program</span> and all required practice activities.</div>
-        </div>
-
-        <div class="cert-features">
-          <div class="cert-feature-item">
-            <span class="cert-feature-icon-circle"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M16 8h.01"/></svg></span>
-            <div class="cert-feature-text">
-              <div class="cert-feature-label">Instagram Basics</div>
-              <div class="cert-feature-sublabel">Account Setup &amp; Profile</div>
-            </div>
-          </div>
-          <div class="cert-feature-item">
-            <span class="cert-feature-icon-circle"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></span>
-            <div class="cert-feature-text">
-              <div class="cert-feature-label">Stories</div>
-              <div class="cert-feature-sublabel">Create &amp; Share Stories</div>
-            </div>
-          </div>
-          <div class="cert-feature-item">
-            <span class="cert-feature-icon-circle"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></span>
-            <div class="cert-feature-text">
-              <div class="cert-feature-label">Posts</div>
-              <div class="cert-feature-sublabel">Create &amp; Share Posts</div>
-            </div>
-          </div>
-          <div class="cert-feature-item">
-            <span class="cert-feature-icon-circle"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span>
-            <div class="cert-feature-text">
-              <div class="cert-feature-label">Reels</div>
-              <div class="cert-feature-sublabel">Create &amp; Share Reels</div>
-            </div>
-          </div>
-          <div class="cert-feature-item">
-            <span class="cert-feature-icon-circle"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></span>
-            <div class="cert-feature-text">
-              <div class="cert-feature-label">Collaboration Tags</div>
-              <div class="cert-feature-sublabel">Connect &amp; Collaborate</div>
-            </div>
-          </div>
-          <div class="cert-feature-item">
-            <span class="cert-feature-icon-circle"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></span>
-            <div class="cert-feature-text">
-              <div class="cert-feature-label">Privacy &amp; Settings</div>
-              <div class="cert-feature-sublabel">Manage &amp; Secure</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="cert-footer">
-          <div class="cert-footer-col">
-            <div class="cert-footer-icon">
-              <svg viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="#E1306C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="14" height="14" rx="2"/><path d="M3 8h14"/><path d="M7 2v3"/><path d="M13 2v3"/></svg>
-            </div>
-            <div class="cert-footer-label">Completion Date</div>
-            <div class="cert-footer-value">${shortDate}</div>
-          </div>
-          <div class="cert-footer-col">
-            <div class="cert-footer-icon">
-              <svg viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="#E1306C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="16" height="14" rx="2"/><circle cx="10" cy="9" r="2"/><path d="M5 17c0-2.8 2.2-5 5-5s5 2.2 5 5"/></svg>
-            </div>
-            <div class="cert-footer-label">Certificate ID</div>
-            <div class="cert-footer-value id">${certId}</div>
-          </div>
-          <div class="cert-footer-col cert-footer-seal-col">
-            <div class="cert-gold-medal">
-              <div class="cert-medal-circle">
-                <span class="cert-medal-star">\u2605</span>
-              </div>
-              <div class="cert-medal-ribbon cert-medal-ribbon-l"></div>
-              <div class="cert-medal-ribbon cert-medal-ribbon-r"></div>
-            </div>
-          </div>
-          <div class="cert-footer-col cert-footer-sig-col">
-            <div class="cert-sig-line"></div>
-            <div class="cert-sig-team">Team Habuild</div>
-            <div class="cert-sig-name">Habuild</div>
-            <div class="cert-sig-tagline">Empowering Lives, Building Better Tomorrows</div>
-          </div>
-        </div>
-
       </div>
      </div>
      <div class="cert-actions">
@@ -352,173 +190,12 @@ function openCertModal() {
       <button class="cert-modal-close" onclick="closeCertModal()" aria-label="Close">&times;</button>
       <div id="certModalBody">
         <div class="certificate" style="margin:0 auto;box-shadow:none;">
-          <div class="cert-inner-border"></div>
-          <div class="cert-corner cert-corner-tl"></div>
-          <div class="cert-corner cert-corner-tr"></div>
-          <div class="cert-corner cert-corner-bl"></div>
-          <div class="cert-corner cert-corner-br"></div>
-
-          <div class="cert-bg-elem cert-bg-insta-left">
-            <svg viewBox="0 0 100 100" width="100%" height="100%" fill="none">
-              <rect x="5" y="5" width="90" height="90" rx="22" stroke="#E1306C" stroke-width="1.2"/>
-              <circle cx="50" cy="50" r="22" stroke="#E1306C" stroke-width="1.2"/>
-              <circle cx="76" cy="24" r="6" fill="#E1306C"/>
-            </svg>
+          <div class="cert-image-wrap">
+            <img src="assets/videos/ig_certicate.jpeg" alt="Certificate of Completion" class="cert-bg-img">
+            <div class="cert-name-overlay">${escHtml(certUserName)}</div>
+            <div class="cert-id-overlay">${certId}</div>
+            <div class="cert-date-overlay">${shortDate}</div>
           </div>
-          <div class="cert-bg-elem cert-bg-heart">
-            <svg viewBox="0 0 40 40" width="100%" height="100%" fill="none">
-              <path d="M20 34s-14-8-14-18c0-5 4-9 9-9 3 0 5 1.5 5 1.5s2-1.5 5-1.5c5 0 9 4 9 9 0 10-14 18-14 18z" stroke="#E1306C" stroke-width="1.5"/>
-            </svg>
-          </div>
-          <div class="cert-bg-elem cert-bg-sparkle cert-bg-sparkle-1"></div>
-          <div class="cert-bg-elem cert-bg-sparkle cert-bg-sparkle-2"></div>
-
-          <div class="cert-header">
-            <div class="cert-header-left">
-              <div class="cert-habuild-circle">
-                <span class="cert-habuild-icon">H</span>
-              </div>
-            </div>
-            <div class="cert-header-center">
-              <div class="cert-insta-row">
-                <span class="cert-insta-icon-large">
-                  <svg viewBox="0 0 24 24" width="26" height="26" fill="none">
-                    <rect x="2" y="2" width="20" height="20" rx="5" stroke="url(#igGrad2)" stroke-width="1.8"/>
-                    <circle cx="12" cy="12" r="5" stroke="url(#igGrad2)" stroke-width="1.8"/>
-                    <circle cx="18" cy="6" r="1.5" fill="url(#igGrad2)"/>
-                    <defs><linearGradient id="igGrad2" x1="0" y1="0" x2="24" y2="24"><stop offset="0%" stop-color="#F77737"/><stop offset="50%" stop-color="#E1306C"/><stop offset="100%" stop-color="#833AB4"/></linearGradient></defs>
-                  </svg>
-                </span>
-                <span class="cert-insta-title">Instagram Mastery</span>
-              </div>
-              <div class="cert-insta-sub">Learn \u2022 Create \u2022 Share \u2022 Grow</div>
-            </div>
-            <div class="cert-header-right">
-              <div class="cert-heart-icon">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
-                  <path d="M12 21s-8-5-8-12c0-3.5 2.8-6 6-6 2 0 4 1 4 1s2-1 4-1c3.2 0 6 2.5 6 6 0 7-8 12-8 12z" fill="#FF6B9D" stroke="#E1306C" stroke-width="1"/>
-                </svg>
-              </div>
-            </div>
-          </div>
-
-          <div class="cert-trophy-wrap">
-            <span class="cert-laurel">
-              <svg viewBox="0 0 50 30" width="100%" height="100%" fill="none">
-                <path d="M25 30c-4-6-8-16-4-24 0 0 4 10 8 14s6 6 6 6-4 4-10 4z" fill="#c9a84c" opacity=".6"/>
-                <path d="M25 30c4-6 8-16 4-24 0 0-4 10-8 14s-6 6-6 6 4 4 10 4z" fill="#c9a84c" opacity=".4"/>
-                <path d="M25 30c-2-4-5-12-2-20l1 3c-1 6 1 12 1 12s2 3 0 5z" fill="#c9a84c" opacity=".7"/>
-                <path d="M25 30c2-4 5-12 2-20l-1 3c1 6-1 12-1 12s-2 3 0 5z" fill="#c9a84c" opacity=".5"/>
-              </svg>
-            </span>
-            <span class="cert-trophy-icon">\uD83C\uDFC6</span>
-            <span class="cert-laurel cert-laurel-right">
-              <svg viewBox="0 0 50 30" width="100%" height="100%" fill="none">
-                <path d="M25 30c-4-6-8-16-4-24 0 0 4 10 8 14s6 6 6 6-4 4-10 4z" fill="#c9a84c" opacity=".6"/>
-                <path d="M25 30c4-6 8-16 4-24 0 0-4 10-8 14s-6 6-6 6 4 4 10 4z" fill="#c9a84c" opacity=".4"/>
-                <path d="M25 30c-2-4-5-12-2-20l1 3c-1 6 1 12 1 12s2 3 0 5z" fill="#c9a84c" opacity=".7"/>
-                <path d="M25 30c2-4 5-12 2-20l-1 3c1 6-1 12-1 12s-2 3 0 5z" fill="#c9a84c" opacity=".5"/>
-              </svg>
-            </span>
-          </div>
-
-          <div class="cert-gold-divider-wrap">
-            <div class="cert-gold-line"></div>
-            <span class="cert-gold-diamond">\u25C6</span>
-            <div class="cert-gold-line"></div>
-          </div>
-
-          <div class="cert-body">
-            <div class="cert-body-title">CERTIFICATE OF COMPLETION</div>
-            <div class="cert-body-awarded-by">This certificate is proudly awarded by</div>
-            <div class="cert-body-org">HABUILD</div>
-            <div class="cert-ribbon">
-              <div class="cert-ribbon-wing"></div>
-              <span class="cert-ribbon-center">to</span>
-              <div class="cert-ribbon-wing cert-ribbon-wing-right"></div>
-            </div>
-            <div class="cert-body-name">${escHtml(certUserName)}</div>
-            <div class="cert-name-divider"></div>
-            <div class="cert-body-desc">For successfully completing the <span class="cert-desc-highlight">Instagram Mastery Learning Program</span> and all required practice activities.</div>
-          </div>
-
-          <div class="cert-features">
-            <div class="cert-feature-item">
-              <span class="cert-feature-icon-circle"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M16 8h.01"/></svg></span>
-              <div class="cert-feature-text">
-                <div class="cert-feature-label">Instagram Basics</div>
-                <div class="cert-feature-sublabel">Account Setup &amp; Profile</div>
-              </div>
-            </div>
-            <div class="cert-feature-item">
-              <span class="cert-feature-icon-circle"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></span>
-              <div class="cert-feature-text">
-                <div class="cert-feature-label">Stories</div>
-                <div class="cert-feature-sublabel">Create &amp; Share Stories</div>
-              </div>
-            </div>
-            <div class="cert-feature-item">
-              <span class="cert-feature-icon-circle"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></span>
-              <div class="cert-feature-text">
-                <div class="cert-feature-label">Posts</div>
-                <div class="cert-feature-sublabel">Create &amp; Share Posts</div>
-              </div>
-            </div>
-            <div class="cert-feature-item">
-              <span class="cert-feature-icon-circle"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span>
-              <div class="cert-feature-text">
-                <div class="cert-feature-label">Reels</div>
-                <div class="cert-feature-sublabel">Create &amp; Share Reels</div>
-              </div>
-            </div>
-            <div class="cert-feature-item">
-              <span class="cert-feature-icon-circle"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></span>
-              <div class="cert-feature-text">
-                <div class="cert-feature-label">Collaboration Tags</div>
-                <div class="cert-feature-sublabel">Connect &amp; Collaborate</div>
-              </div>
-            </div>
-            <div class="cert-feature-item">
-              <span class="cert-feature-icon-circle"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></span>
-              <div class="cert-feature-text">
-                <div class="cert-feature-label">Privacy &amp; Settings</div>
-                <div class="cert-feature-sublabel">Manage &amp; Secure</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="cert-footer">
-            <div class="cert-footer-col">
-              <div class="cert-footer-icon">
-                <svg viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="#E1306C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="14" height="14" rx="2"/><path d="M3 8h14"/><path d="M7 2v3"/><path d="M13 2v3"/></svg>
-              </div>
-              <div class="cert-footer-label">Completion Date</div>
-              <div class="cert-footer-value">${shortDate}</div>
-            </div>
-            <div class="cert-footer-col">
-              <div class="cert-footer-icon">
-                <svg viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="#E1306C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="16" height="14" rx="2"/><circle cx="10" cy="9" r="2"/><path d="M5 17c0-2.8 2.2-5 5-5s5 2.2 5 5"/></svg>
-              </div>
-              <div class="cert-footer-label">Certificate ID</div>
-              <div class="cert-footer-value id">${certId}</div>
-            </div>
-            <div class="cert-footer-col cert-footer-seal-col">
-              <div class="cert-gold-medal">
-                <div class="cert-medal-circle">
-                  <span class="cert-medal-star">\u2605</span>
-                </div>
-                <div class="cert-medal-ribbon cert-medal-ribbon-l"></div>
-                <div class="cert-medal-ribbon cert-medal-ribbon-r"></div>
-              </div>
-            </div>
-            <div class="cert-footer-col cert-footer-sig-col">
-              <div class="cert-sig-line"></div>
-              <div class="cert-sig-team">Team Habuild</div>
-              <div class="cert-sig-name">Habuild</div>
-              <div class="cert-sig-tagline">Empowering Lives, Building Better Tomorrows</div>
-            </div>
-          </div>
-
         </div>
       </div>
       <div class="cert-modal-actions">
@@ -549,7 +226,6 @@ function downloadCertificateImage() {
   const element = document.getElementById('certificateDownload');
   if (!element) return;
 
-  const shortDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
   const clone = element.cloneNode(true);
   clone.querySelectorAll('script').forEach(function (s) { s.remove(); });
 
@@ -571,7 +247,10 @@ function downloadCertificateImage() {
     return;
   }
 
+  var pageUrl = window.location.href;
+
   printWin.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8">');
+  printWin.document.write('<base href="' + pageUrl + '">');
   printWin.document.write('<title>Instagram Mastery Certificate</title>');
   printWin.document.write('<style>' + styles + '</style>');
   printWin.document.write('<style>');
