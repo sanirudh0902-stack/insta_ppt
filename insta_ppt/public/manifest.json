@@ -1,0 +1,18 @@
+{
+  "name": "Instagram Mastery",
+  "short_name": "IG Mastery",
+  "description": "A friendly, step-by-step guide to Instagram for beginners",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#FAFAFA",
+  "theme_color": "#E1306C",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "social"]
+}
