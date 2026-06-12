@@ -79,10 +79,11 @@ function renderCertificateSection() {
     const sectionsDone = progress.completed.filter(function (id) {
       return sectionIds.indexOf(id) !== -1;
     }).length;
-
+    
+    // Get practice completion status
     const practiceDone = JSON.parse(localStorage.getItem('igPracticeDone') || '[]');
     const tasksDoneVal = practiceDone.filter(Boolean).length;
-    const totalTasks = 5;
+    const totalTasks = 5; // Matches the practice tasks count
     const overallPct = Math.min(100, Math.round(((sectionsDone/totalSections) + (tasksDoneVal/totalTasks)) / 2 * 100));
 
     container.innerHTML = `
@@ -144,19 +145,8 @@ function handleGenerateCertificate() {
   saveCertData(certUserName, certId);
   certGenerated = true;
   renderCertificateSection();
-}
-
-function renderCertificateHTML(userName, certIdVal, dateStr) {
-  const safeName = escHtml(userName);
-  const safeId = escHtml(certIdVal);
-
-  return `
-    <div class="certificate" id="certificateDownload">
-      <img src="/assets/videos/certificate-bg.jpg" alt="Certificate of Completion" class="cert-bg-img">
-      <div class="cert-overlays">
-        <div class="cert-name">${safeName}</div>
-      </div>
-    </div>`;
+  // Note: Not calling renderSideNav to maintain isolation
+  // The main script will handle sidebar updates when needed
 }
 
 function showCertificatePreview(container) {
@@ -168,7 +158,14 @@ function showCertificatePreview(container) {
       <h2 class="text-3xl sm:text-4xl font-black mt-3">Your Certificate</h2>
     </div>
     <div class="cert-preview-wrapper">
-      ${renderCertificateHTML(certUserName, certId, shortDate)}
+      <div class="certificate" id="certificateDownload">
+        <div class="cert-image-wrap">
+          <img src="assets/videos/ig_certicate.jpeg" alt="Certificate of Completion" class="cert-bg-img">
+          <div class="cert-name-overlay">${escHtml(certUserName)}</div>
+          <div class="cert-id-overlay">${certId}</div>
+          <div class="cert-date-overlay">${shortDate}</div>
+        </div>
+      </div>
      </div>
      <div class="cert-actions">
         <button class="cert-btn cert-btn-primary" onclick="downloadCertificateImage()"> Download Certificate</button>
@@ -193,9 +190,11 @@ function openCertModal() {
       <button class="cert-modal-close" onclick="closeCertModal()" aria-label="Close">&times;</button>
       <div id="certModalBody">
         <div class="certificate" style="margin:0 auto;box-shadow:none;">
-          <img src="/assets/videos/certificate-bg.jpg" alt="Certificate of Completion" class="cert-bg-img">
-          <div class="cert-overlays">
-            <div class="cert-name">${escHtml(certUserName)}</div>
+          <div class="cert-image-wrap">
+            <img src="assets/videos/ig_certicate.jpeg" alt="Certificate of Completion" class="cert-bg-img">
+            <div class="cert-name-overlay">${escHtml(certUserName)}</div>
+            <div class="cert-id-overlay">${certId}</div>
+            <div class="cert-date-overlay">${shortDate}</div>
           </div>
         </div>
       </div>
@@ -252,9 +251,6 @@ function downloadCertificateImage() {
 
   printWin.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8">');
   printWin.document.write('<base href="' + pageUrl + '">');
-  printWin.document.write('<link rel="preconnect" href="https://fonts.googleapis.com">');
-  printWin.document.write('<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>');
-  printWin.document.write('<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Great+Vibes&display=swap" rel="stylesheet">');
   printWin.document.write('<title>Instagram Mastery Certificate</title>');
   printWin.document.write('<style>' + styles + '</style>');
   printWin.document.write('<style>');
@@ -262,7 +258,7 @@ function downloadCertificateImage() {
   printWin.document.write('@page { size: landscape; margin: 0; }');
   printWin.document.write('@media print {');
   printWin.document.write('  body { margin: 0; padding: 0; background: white; display: block; }');
-  printWin.document.write('  .certificate { box-shadow: none; margin: 0 auto; }');
+  printWin.document.write('  .certificate { box-shadow: none; border: none; margin: 0 auto; }');
   printWin.document.write('  .cert-actions, .cert-btn, .sidebar, .sidebar-panel, .sidebar-floating-btn,');
   printWin.document.write('  .sidebar-drawer-overlay, .section-nav, .section-nav-btn,');
   printWin.document.write('  .mark-complete-btn, .cert-modal-overlay, .cert-modal-actions {');
@@ -296,16 +292,20 @@ function resetCourse() {
 
   if (typeof resetPractice === 'function') resetPractice();
 
+  // Reset all "Mark as Completed" section buttons back to default state
   document.querySelectorAll('.mark-complete-btn.done').forEach(function (btn) {
     btn.className = 'mark-complete-btn';
     btn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Mark as Completed';
   });
 
+  // Re-render certificate section to show locked state
   renderCertificateSection();
 
+  // Update all progress-dependent UI (sidebar, top bar, resume banner)
   if (typeof updateProgress === 'function') {
     updateProgress();
   } else if (typeof renderSideNav === 'function') {
     renderSideNav();
   }
 }
+

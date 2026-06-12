@@ -1,38 +1,28 @@
 import { defineConfig } from 'vite';
-import { resolve, join } from 'path';
-import { copyFileSync } from 'fs';
+import { copyFileSync, mkdirSync, readdirSync, existsSync } from 'fs';
+import { join } from 'path';
 
-const root = resolve(__dirname, 'insta_ppt');
+const root = process.cwd();
 
 export default defineConfig({
-  root,
-  publicDir: resolve(root, 'public'),
-  build: {
-    outDir: resolve(__dirname, 'dist'),
-    emptyOutDir: true,
-    cssMinify: true,
-    minify: 'esbuild',
-    rollupOptions: {
-      output: {
-        assetFileNames: 'assets/[name]-[hash][extname]',
-        chunkFileNames: 'assets/[name]-[hash].js',
-        entryFileNames: 'assets/[name]-[hash].js',
-      },
-    },
-  },
-  server: {
-    open: true,
-  },
   plugins: [
     {
-      name: 'copy-legacy-scripts',
+      name: 'copy-static-assets',
       closeBundle() {
-        const rootDir = resolve(__dirname, 'insta_ppt');
-        const outDir = resolve(__dirname, 'dist');
-        const src = join(rootDir, 'certificate.js');
-        const dest = join(outDir, 'certificate.js');
-        copyFileSync(src, dest);
-      },
-    },
-  ],
+        const copyDir = (src, dest) => {
+          if (!existsSync(src)) return;
+          if (!existsSync(dest)) mkdirSync(dest, { recursive: true });
+          for (const item of readdirSync(src, { withFileTypes: true })) {
+            const s = join(src, item.name);
+            const d = join(dest, item.name);
+            item.isDirectory() ? copyDir(s, d) : copyFileSync(s, d);
+          }
+        };
+        copyDir(join(root, 'assets'), join(root, 'dist', 'assets'));
+        if (existsSync(join(root, 'certificate.js'))) {
+          copyFileSync(join(root, 'certificate.js'), join(root, 'dist', 'certificate.js'));
+        }
+      }
+    }
+  ]
 });
