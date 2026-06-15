@@ -9,6 +9,12 @@ function escHtml(text) {
   return div.innerHTML;
 }
 
+function toTitleCase(str) {
+  return str.replace(/\w\S*/g, function (t) {
+    return t.charAt(0).toUpperCase() + t.slice(1).toLowerCase();
+  });
+}
+
 function generateCertificateId() {
   return 'IGM-' + Math.random().toString(36).substr(2, 9).toUpperCase();
 }
@@ -36,7 +42,7 @@ function loadCertData() {
   const data = localStorage.getItem('certificateData');
   if (data) {
     const parsed = JSON.parse(data);
-    certUserName = parsed.name || '';
+    certUserName = toTitleCase(parsed.name || '');
     certId = parsed.id || '';
     certGenerated = parsed.generated || false;
   }
@@ -140,7 +146,7 @@ function handleGenerateCertificate() {
     return;
   }
   if (nameInput) nameInput.classList.remove('error');
-  certUserName = name;
+  certUserName = toTitleCase(name);
   certId = generateCertificateId();
   saveCertData(certUserName, certId);
   certGenerated = true;
@@ -149,9 +155,58 @@ function handleGenerateCertificate() {
   // The main script will handle sidebar updates when needed
 }
 
-function showCertificatePreview(container) {
-  const shortDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+function positionCertificateName() {
+  var overlays = document.querySelectorAll('.cert-name-overlay');
+  overlays.forEach(function(overlay) {
+    var wrap = overlay.closest('.cert-image-wrap');
+    if (!wrap) return;
+    var img = wrap.querySelector('.cert-bg-img');
+    if (!img) return;
+    (function doPosition() {
+      if (img.complete && img.naturalWidth > 0) {
+        applyCertNamePosition(overlay, img);
+      } else {
+        img.addEventListener('load', doPosition);
+      }
+    })();
+  });
+}
 
+function applyCertNamePosition(overlay, img) {
+  var wrap = overlay.closest('.cert-image-wrap');
+  if (!wrap) return;
+
+  overlay.style.transform = 'none';
+  overlay.style.left = '10%';
+  overlay.style.width = '80%';
+  overlay.style.whiteSpace = 'nowrap';
+
+  var computed = window.getComputedStyle(overlay);
+  var fontSize = parseFloat(computed.fontSize) || 50;
+  var containerW = wrap.offsetWidth || overlay.parentElement.offsetWidth;
+  var maxTextW = containerW * 0.78;
+
+  if (overlay.scrollWidth > maxTextW) {
+    var ratio = maxTextW / overlay.scrollWidth;
+    fontSize = Math.floor(fontSize * ratio * 0.95);
+    overlay.style.fontSize = fontSize + 'px';
+  }
+
+  var renderedH = img.offsetHeight || wrap.offsetHeight;
+  if (!renderedH) return;
+
+  var naturalH = img.naturalHeight;
+  var offsetPct = naturalH ? (70 / naturalH * 100) : 11;
+
+  var centerPct = 46 + offsetPct;
+  var elemH = fontSize * 1.15;
+  var elemH_pct = elemH / renderedH * 100;
+  var topPct = centerPct - elemH_pct / 2;
+
+  overlay.style.top = topPct + '%';
+}
+
+function showCertificatePreview(container) {
   container.innerHTML = `
     <div class="text-center">
       <span class="badge-premium"> Certificate</span>
@@ -160,10 +215,8 @@ function showCertificatePreview(container) {
     <div class="cert-preview-wrapper">
       <div class="certificate" id="certificateDownload">
         <div class="cert-image-wrap">
-          <img src="assets/videos/ig_certicate.jpeg" alt="Certificate of Completion" class="cert-bg-img">
+          <img src="assets/videos/certificate-bg.jpg" alt="Certificate of Completion" class="cert-bg-img">
           <div class="cert-name-overlay">${escHtml(certUserName)}</div>
-          <div class="cert-id-overlay">${certId}</div>
-          <div class="cert-date-overlay">${shortDate}</div>
         </div>
       </div>
      </div>
@@ -172,15 +225,14 @@ function showCertificatePreview(container) {
         <button class="cert-btn cert-btn-secondary" onclick="openCertModal()"> View Certificate</button>
         <button class="cert-btn cert-btn-danger" onclick="resetCourse()"> Reset Course</button>
      </div>
-   `;
+    `;
+  positionCertificateName();
 }
 
 // ===== CERTIFICATE MODAL =====
 function openCertModal() {
   const existing = document.getElementById('certModalOverlay');
   if (existing) existing.remove();
-
-  const shortDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 
   const overlay = document.createElement('div');
   overlay.className = 'cert-modal-overlay';
@@ -191,10 +243,8 @@ function openCertModal() {
       <div id="certModalBody">
         <div class="certificate" style="margin:0 auto;box-shadow:none;">
           <div class="cert-image-wrap">
-            <img src="assets/videos/ig_certicate.jpeg" alt="Certificate of Completion" class="cert-bg-img">
+            <img src="assets/videos/certificate-bg.jpg" alt="Certificate of Completion" class="cert-bg-img">
             <div class="cert-name-overlay">${escHtml(certUserName)}</div>
-            <div class="cert-id-overlay">${certId}</div>
-            <div class="cert-date-overlay">${shortDate}</div>
           </div>
         </div>
       </div>
@@ -206,6 +256,7 @@ function openCertModal() {
   `;
 
   document.body.appendChild(overlay);
+  positionCertificateName();
   requestAnimationFrame(() => overlay.classList.add('active'));
 
   overlay.addEventListener('click', function(e) {
@@ -221,59 +272,30 @@ function closeCertModal() {
   }
 }
 
-// ===== DOWNLOAD CERTIFICATE VIA PRINT =====
+// ===== DOWNLOAD CERTIFICATE AS PNG =====
 function downloadCertificateImage() {
   const element = document.getElementById('certificateDownload');
   if (!element) return;
 
-  const clone = element.cloneNode(true);
-  clone.querySelectorAll('script').forEach(function (s) { s.remove(); });
-
-  var styles = '';
-  for (var i = 0; i < document.styleSheets.length; i++) {
-    try {
-      var rules = document.styleSheets[i].cssRules || document.styleSheets[i].rules;
-      if (rules) {
-        for (var j = 0; j < rules.length; j++) {
-          styles += rules[j].cssText + '\n';
-        }
-      }
-    } catch (e) {}
-  }
-
-  var printWin = window.open('', '_blank', 'width=900,height=700');
-  if (!printWin) {
-    alert('Please allow popups to download the certificate.');
+  if (typeof html2canvas === 'undefined') {
+    alert('Download library not loaded. Please refresh and try again.');
     return;
   }
 
-  var pageUrl = window.location.href;
-
-  printWin.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8">');
-  printWin.document.write('<base href="' + pageUrl + '">');
-  printWin.document.write('<title>Instagram Mastery Certificate</title>');
-  printWin.document.write('<style>' + styles + '</style>');
-  printWin.document.write('<style>');
-  printWin.document.write('body { margin: 0; padding: 50px; background: #fff; display: flex; justify-content: center; align-items: center; min-height: 100vh; box-sizing: border-box; }');
-  printWin.document.write('@page { size: landscape; margin: 0; }');
-  printWin.document.write('@media print {');
-  printWin.document.write('  body { margin: 0; padding: 0; background: white; display: block; }');
-  printWin.document.write('  .certificate { box-shadow: none; border: none; margin: 0 auto; }');
-  printWin.document.write('  .cert-actions, .cert-btn, .sidebar, .sidebar-panel, .sidebar-floating-btn,');
-  printWin.document.write('  .sidebar-drawer-overlay, .section-nav, .section-nav-btn,');
-  printWin.document.write('  .mark-complete-btn, .cert-modal-overlay, .cert-modal-actions {');
-  printWin.document.write('    display: none !important;');
-  printWin.document.write('  }');
-  printWin.document.write('}');
-  printWin.document.write('</style>');
-  printWin.document.write('</head><body>');
-  printWin.document.write(clone.outerHTML);
-  printWin.document.write('</body></html>');
-  printWin.document.close();
-
-  printWin.onload = function () {
-    setTimeout(function () { printWin.print(); }, 500);
-  };
+  html2canvas(element, {
+    scale: 3,
+    useCORS: true,
+    allowTaint: false,
+    backgroundColor: '#ffffff',
+    logging: false
+  }).then(function (canvas) {
+    const link = document.createElement('a');
+    link.download = 'certificate.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  }).catch(function () {
+    alert('Could not generate certificate image. Please try again.');
+  });
 }
 
 // ===== RESET COURSE =====

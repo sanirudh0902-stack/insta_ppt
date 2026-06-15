@@ -8,19 +8,26 @@
   </script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
    </script>
-    <link rel="stylesheet" href="certificate.css">
-    <script src="certificate.js"></script>
+     <link rel="stylesheet" href="certificate.css">
+     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+     <script src="certificate.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Great+Vibes&family=Playfair+Display:wght@700;900&display=swap');
-    * { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+    * { font-family: 'Inter', sans-serif; scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { overflow-x: hidden; }
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: #f0f0f0; }
     ::-webkit-scrollbar-thumb { background: #E1306C; border-radius: 3px; }
-    body { background: #FAFAFA; }
+    body { background: #FAFAFA; overflow-x: hidden; width: 100%; }
+    img, video { max-width: 100%; height: auto; }
+    button, a { touch-action: manipulation; }
+    [onclick] { touch-action: manipulation; cursor: pointer; }
 
     .glass { background: rgba(255,255,255,.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(0,0,0,.06); }
-    .glass-card { background: #FFFFFF; border: 1px solid rgba(0,0,0,.05); border-radius: 28px; transition: all .4s ease; box-shadow: 0 12px 40px rgba(0,0,0,.08); }
+    .glass-card { background: #FFFFFF; border: 1px solid rgba(0,0,0,.05); border-radius: 28px; transition: all .4s ease; box-shadow: 0 12px 40px rgba(0,0,0,.08); width: 100%; }
     .glass-card:hover { transform: translateY(-2px); box-shadow: 0 20px 60px -12px rgba(225,48,108,.12); border-color: rgba(225,48,108,.15); }
+    .glass-card.tips-card { width: auto; }
 
     .neon-glow { box-shadow: 0 0 30px -8px rgba(225,48,108,.2); }
     .neon-border { border-color: rgba(225,48,108,.3); }
@@ -115,6 +122,14 @@
       .iphone { width: 185px; height: 380px; border-radius: 22px; border-width: 2px; }
       .iphone-notch { top: 10px; width: 8px; height: 8px; }
       .iphone-home-indicator { width: 60px; bottom: 6px; height: 2px; }
+    }
+    @media (max-width: 380px) {
+      .iphone { width: 155px; height: 320px; border-radius: 18px; border-width: 2px; }
+      .iphone-notch { top: 8px; width: 6px; height: 6px; }
+      .iphone-home-indicator { width: 50px; bottom: 5px; height: 2px; }
+      .play-btn-large { width: 32px; height: 32px; }
+      .play-btn-large svg { width: 14px; height: 14px; }
+      .replay-btn { padding: 6px 12px; font-size: 10px; }
     }
     @media (min-width: 641px) and (max-width: 1024px) {
       .iphone { width: 250px; height: 556px; }
@@ -477,6 +492,11 @@
       display: block;
       background: #000;
     }
+    #s-record-video .video-player video,
+    #s-repost-reel .video-player video,
+    #s-share-link .video-player video {
+      object-fit: contain;
+    }
     .video-poster {
       position: absolute;
       inset: 0;
@@ -495,7 +515,7 @@
     .video-poster img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
     }
     .play-btn-overlay {
       position: absolute;
@@ -1071,17 +1091,26 @@
       .sidebar-drawer-overlay { display: none !important; }
     }
     @media (max-width: 640px) {
+      #mobileMenu a { min-height: 44px; display: flex; align-items: center; padding: 10px 4px; }
+    }
+    @media (max-width: 640px) {
       .search-bar { max-width: 100%; }
       .section-nav { flex-direction: column; }
-      .section-nav-btn { width: 100%; justify-content: center; }
+      .section-nav-btn { width: 100%; justify-content: center; min-height: 48px; }
       .top-progress .tp-bar { width: 60px; }
-      .mark-complete-btn { width: 100%; justify-content: center; padding: 12px 20px; font-size: 13px; }
+      .mark-complete-btn { width: 100%; justify-content: center; padding: 14px 20px; font-size: 13px; min-height: 48px; }
+      section[id] { scroll-margin-top: 70px; }
     }
     @media (max-width: 480px) {
-      section[id] { scroll-margin-top: 60px; }
-      .glass-card { border-radius: 20px; }
-      .mark-complete-btn { padding: 10px 16px; font-size: 12px; }
-      .section-nav-btn { padding: 10px 18px; font-size: 12px; }
+      section[id] { scroll-margin-top: 56px; }
+      .glass-card { border-radius: 20px; padding: 16px; }
+      .mark-complete-btn { padding: 12px 16px; font-size: 12px; }
+      .section-nav-btn { padding: 12px 18px; font-size: 12px; min-height: 44px; }
+    }
+    @media (max-width: 380px) {
+      .glass-card { padding: 12px; border-radius: 16px; }
+      .mark-complete-btn { padding: 10px 12px; font-size: 11px; }
+      .section-nav-btn { padding: 10px 14px; font-size: 11px; }
     }
 
     /* ===== CERTIFICATE SYSTEM ===== */
@@ -1180,6 +1209,11 @@
       <a href="#s-posts" class="block py-2 text-sm text-gray-500 hover:text-gray-900">Upload Posts</a>
       <a href="#s-reels" class="block py-2 text-sm text-gray-500 hover:text-gray-900">Upload Reels</a>
       <a href="#s-collab" class="block py-2 text-sm text-gray-500 hover:text-gray-900">Collaboration Tag</a>
+      <a href="#s-record-video" class="block py-2 text-sm text-gray-500 hover:text-gray-900">How to Record a Video</a>
+      <a href="#s-repost-reel" class="block py-2 text-sm text-gray-500 hover:text-gray-900">How to Repost Reel &amp; Post</a>
+      <a href="#s-share-link" class="block py-2 text-sm text-gray-500 hover:text-gray-900">How to Share a Link on Story</a>
+      <a href="#s-highlight-story" class="block py-2 text-sm text-gray-500 hover:text-gray-900">Highlight Your Story</a>
+      <a href="#s-switch-public" class="block py-2 text-sm text-gray-500 hover:text-gray-900">Switch to Public Account</a>
       <a href="#s-settings" class="block py-2 text-sm text-gray-500 hover:text-gray-900">Settings &amp; Privacy</a>
       <a href="#s-problems" class="block py-2 text-sm text-gray-500 hover:text-gray-900">Common Problems</a>
       <a href="#s-practice" class="block py-2 text-sm text-gray-500 hover:text-gray-900">Practice Tasks</a>
@@ -1442,8 +1476,111 @@
         { label: 'Invite Collaborator', html: '<div class="ig-scene"><div class="ig-top-bar"><span>New Reel</span><span style="color:#405DE6;font-weight:700">Share</span></div><div class="ig-content ig-center"><div class="ig-modal"><div class="ig-invite-btn ig-pulse">+ Invite Collaborator</div><p style="color:#999;font-size:9px;margin-top:8px">Share together with your partner </p></div></div></div>' }
       ]
     }, {
-      id: 'settings', num: '7', label: 'Settings &amp; Privacy',
-      badge: ' Section 7',
+      id: 'record-video', num: '7', label: 'How to Record a Video',
+      badge: ' Section 9',
+      title: 'How to Record a Video',
+      desc: 'Learn how to record a video directly from Instagram using your phone camera.',
+      steps: [
+        'Open Instagram app',
+        'Tap the + icon or swipe right to open camera',
+        'Select Story or Reel mode',
+        'Hold the record button to start recording',
+        'Release or tap again to stop recording',
+        'Preview the video',
+        'Add text, music, stickers, or effects if needed',
+        'Tap Next or Share'
+      ],
+      tips: [
+        'Good lighting makes your videos look better',
+        'Hold your phone steady while recording'
+      ],
+      video: 'assets/videos/record-video.mp4',
+      poster: 'assets/images/record-video-thumb.svg'
+    }, {
+      id: 'repost-reel', num: '8', label: 'How to Repost Reel &amp; Post',
+      badge: ' Section 8',
+      title: 'How to Repost Reel &amp; Post',
+      desc: 'Learn how to repost reels and posts safely and correctly using Instagram sharing options.',
+      steps: [
+        'Open the reel or post you want to repost',
+        'Tap the share icon',
+        'Select Add to Story if available',
+        'Adjust the post or reel on your story screen',
+        'Add text, stickers, or mention if needed',
+        'Give credit to the original creator when required',
+        'Tap Share to post it on your story'
+      ],
+      tips: [
+        'Always give credit to the original creator',
+        'Reposting to story is the safest way to share'
+      ],
+      video: 'assets/videos/repost-reel-post.mp4',
+      poster: 'assets/images/repost-reel-thumb.svg'
+    }, {
+      id: 'share-link', num: '9', label: 'How to Share a Link on Story',
+      badge: ' Section 9',
+      title: 'How to Share a Link on Story',
+      desc: 'Learn how to add and share links on Instagram stories using the Link sticker.',
+      steps: [
+        'Open Instagram app',
+        'Create or upload a story',
+        'Tap the sticker icon',
+        'Select the Link sticker',
+        'Paste your link',
+        'Customize the link sticker text if needed',
+        'Place the sticker properly on the story',
+        'Tap Share to publish the story'
+      ],
+      tips: [
+        'Customize the link sticker text to make it engaging',
+        'Place the sticker where it does not cover important content'
+      ],
+      video: 'assets/videos/share-link-story.mp4',
+      poster: 'assets/images/share-link-thumb.svg'
+    }, {
+      id: 'highlight-story', num: '10', label: 'Highlight Your Story',
+      badge: ' Section 10',
+      title: 'Highlight Your Story',
+      desc: 'Learn how to save your Instagram story as a highlight on your profile.',
+      steps: [
+        'Open your Instagram profile',
+        'Tap the + button in the Highlights section',
+        'Select the story you want to highlight',
+        'Tap Next',
+        'Add a highlight name',
+        'Choose or edit the cover if needed',
+        'Tap Done to save the highlight'
+      ],
+      tips: [
+        'Highlights stay on your profile permanently',
+        'Organize highlights by theme for a better profile look',
+        'Add a custom cover to match your profile style'
+      ],
+      video: 'assets/videos/highlight-your-story.mp4',
+      poster: 'assets/images/highlight-story-thumb.svg'
+    }, {
+      id: 'switch-public', num: '11', label: 'Switch to Public Account',
+      badge: ' Section 11',
+      title: 'Switch to Public Account',
+      desc: 'Learn how to switch your Instagram account from private to public.',
+      steps: [
+        'Open Instagram profile',
+        'Tap the menu icon',
+        'Go to Settings and Privacy',
+        'Open Account Privacy',
+        'Turn off Private Account',
+        'Confirm switching to public account'
+      ],
+      tips: [
+        'Public accounts let anyone see your content',
+        'You can switch back to private anytime',
+        'Public accounts can appear in Explore and search results'
+      ],
+      video: 'assets/videos/switch-to-public-account.mp4',
+      poster: 'assets/images/switch-public-thumb.svg'
+    }, {
+      id: 'settings', num: '12', label: 'Settings &amp; Privacy',
+      badge: ' Section 12',
       title: 'Settings &amp; Privacy',
       desc: 'Keep your account safe and control who sees your content. Here are the key settings to know.',
       steps: [
@@ -1462,8 +1599,8 @@
       poster: 'assets/images/settings-thumb.jpg',
       hidePhone: true
     }, {
-      id: 'problems', num: '8', label: 'Common Problems',
-      badge: ' Section 8',
+      id: 'problems', num: '13', label: 'Common Problems',
+      badge: ' Section 13',
       title: 'Common Problems &amp; Solutions',
       desc: 'Don\'t worry &mdash; most issues are easy to fix. Here are solutions to the most common problems.',
       steps: [
@@ -1489,15 +1626,16 @@
       ' Upload your first story',
       ' Upload your first reel',
       ' Add a collaborator to a reel',
+      ' Record a video on Instagram',
+      ' Repost a reel or post',
+      ' Share a link on your story',
       ' Share your Instagram journey'
     ];
-    let practiceDone = JSON.parse(localStorage.getItem('igPracticeDone') || 'null') || [false, false, false, false, false];
+    let practiceDone = JSON.parse(localStorage.getItem('igPracticeDone') || 'null') || [false, false, false, false, false, false, false, false];
 
     // ===== SET UP VIDEO PLAYERS =====
-    // Attach events to all video players. Sources are already inline in HTML.
     function initVideoPlayers() {
       document.querySelectorAll('.video-player').forEach(container => {
-        const posterPath = container.dataset.poster;
         const video = container.querySelector('video');
         const poster = container.querySelector('.video-poster');
         const replay = container.querySelector('.replay-overlay');
@@ -1505,59 +1643,33 @@
 
         if (!video) return;
 
-        // --- Video events ---
+        let errorRetryCount = 0;
+
         video.addEventListener('play', () => {
           if (poster) poster.classList.add('hidden');
           if (replay) replay.classList.remove('show');
+          if (error) error.classList.add('hidden');
         });
 
         video.addEventListener('ended', () => {
           if (replay) replay.classList.add('show');
         });
 
-        video.addEventListener('error', function () {
-          if (!video._mutedRetry) {
-            video._mutedRetry = true;
-            video.muted = true;
-            video.load();
-            video.play().catch(function () {});
+        video.addEventListener('error', function onVideoError() {
+          errorRetryCount++;
+          if (errorRetryCount > 2) {
+            if (poster) poster.classList.add('hidden');
+            if (error) error.classList.remove('hidden');
             return;
           }
-          if (poster) poster.classList.add('hidden');
-          if (error) error.classList.remove('hidden');
+          setTimeout(() => {
+            video.load();
+          }, 800);
         });
 
-        video.addEventListener('stalled', function () {
-          if (!video.readyState) {
-            if (!video._mutedRetry) {
-              video._mutedRetry = true;
-              video.muted = true;
-              video.load();
-              video.play().catch(function () {});
-              return;
-            }
-            if (error) {
-              error.classList.remove('hidden');
-              if (poster) poster.classList.add('hidden');
-            }
-          }
+        video.addEventListener('canplay', function onCanPlay() {
+          if (error) error.classList.add('hidden');
         });
-
-        setTimeout(function () {
-          if (video.readyState === 0) {
-            if (!video._mutedRetry) {
-              video._mutedRetry = true;
-              video.muted = true;
-              video.load();
-              video.play().catch(function () {});
-              return;
-            }
-            if (error) {
-              error.classList.remove('hidden');
-              if (poster) poster.classList.add('hidden');
-            }
-          }
-        }, 3000);
       });
     }
 
@@ -1571,32 +1683,32 @@
 
       if (!video) return;
 
-      // If video had an error but user clicked, try again
-      if (error && !error.classList.contains('hidden')) {
-        error.classList.add('hidden');
-        video.load();
-        setTimeout(() => {
-          video.play().catch(() => { video.load(); });
-        }, 300);
-        return;
-      }
-
-      // Hide replay if showing
-      if (replay) replay.classList.remove('show');
-
-      video.load();
-      video.play().catch(function (playErr) {
-        video.muted = true;
-        video.load();
-        setTimeout(function () {
+      function doPlay() {
+        video.play().catch(function () {
+          video.muted = true;
           video.play().catch(function () {
             if (error) {
               error.classList.remove('hidden');
               if (posterEl) posterEl.classList.add('hidden');
             }
           });
-        }, 500);
-      });
+        });
+      }
+
+      // If video had an error but user clicked, try again
+      if (error && !error.classList.contains('hidden')) {
+        error.classList.add('hidden');
+        video.muted = false;
+        video.load();
+        video.addEventListener('canplay', doPlay, { once: true });
+        return;
+      }
+
+      // Hide replay if showing
+      if (replay) replay.classList.remove('show');
+
+      video.muted = false;
+      doPlay();
     }
 
     // ===== HANDLE REPLAY CLICK =====
@@ -1615,12 +1727,16 @@
 
       video.pause();
       video.currentTime = 0;
-      video.muted = true;
-      video.load();
+      video.muted = false;
 
-      setTimeout(function () {
-        video.play().catch(function () { video.load(); });
-      }, 400);
+      video.addEventListener('canplay', function playAfterLoad() {
+        video.play().catch(function () {
+          video.muted = true;
+          video.play().catch(function () {});
+        });
+      }, { once: true });
+
+      video.load();
     }
 
     // ===== RENDER SECTIONS =====
@@ -1698,15 +1814,15 @@
 
     // ===== REUSABLE TUTORIAL VIDEO COMPONENT =====
     // videoSrc: path to MP4 file
-    // posterSrc: path to thumbnail/poster image (with SVG fallback via onerror)
+    // posterSrc: path to thumbnail/poster image (SVG used directly)
     // Returns complete HTML for a video player inside an iPhone screen
     function renderTutorialVideo(videoSrc, posterSrc) {
-      const fallbackPoster = posterSrc.replace('.jpg', '.svg');
+      const posterSvg = posterSrc.replace('.jpg', '.svg');
       return `
         <div class="video-player" data-video="${videoSrc}" data-poster="${posterSrc}">
           <video preload="auto" playsinline controls muted src="${videoSrc}"></video>
           <div class="video-poster" onclick="handlePlayClick(this)">
-            <img src="${posterSrc}" alt="Play tutorial" loading="lazy" onerror="this.src='${fallbackPoster}'">
+            <img src="${posterSvg}" alt="Play tutorial" loading="lazy">
             <div class="play-btn-overlay">
               <div class="play-btn-large">
                 <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -1788,7 +1904,7 @@
         </div>`;
       
       return `
-        <div class="phone-wrapper">
+        <div class="phone-wrapper${s.portrait ? ' portrait' : ''}">
           ${phoneInner}
           <div class="phone-shadow"></div>
         </div>`;
@@ -1933,7 +2049,7 @@
 
       const all = [
         ...sectionData.map(s => ({ id: 's-' + s.id, num: s.num, label: s.label })),
-        { id: 's-practice', num: '9', label: 'Practice Tasks' },
+        { id: 's-practice', num: String(sectionData.length + 1), label: 'Practice Tasks' },
         { id: 's-certificate', num: '', label: ' Certificate' }
       ];
 
@@ -2025,7 +2141,7 @@
       const q = query.toLowerCase();
       const all = [
         ...sectionData.map(s => ({ id: 's-' + s.id, num: s.num, label: s.label, desc: s.desc })),
-        { id: 's-practice', num: '9', label: 'Practice Tasks', desc: 'Complete practice tasks to test your knowledge' },
+        { id: 's-practice', num: String(sectionData.length + 1), label: 'Practice Tasks', desc: 'Complete practice tasks to test your knowledge' },
         { id: 's-certificate', num: '', label: ' Certificate', desc: 'View and download your Certificate of Completion' }
       ];
 
