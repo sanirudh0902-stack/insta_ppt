@@ -207,6 +207,7 @@ function applyCertNamePosition(overlay, img) {
 }
 
 function showCertificatePreview(container) {
+  const d = new Date(); const certDate = String(d.getDate()).padStart(2,'0') + '/' + String(d.getMonth()+1).padStart(2,'0') + '/' + d.getFullYear();
   container.innerHTML = `
     <div class="text-center">
       <span class="badge-premium"> Certificate</span>
@@ -215,8 +216,9 @@ function showCertificatePreview(container) {
     <div class="cert-preview-wrapper">
       <div class="certificate" id="certificateDownload">
         <div class="cert-image-wrap">
-          <img src="assets/videos/certificate-bg.jpg" alt="Certificate of Completion" class="cert-bg-img">
+          <img src="assets/videos/certificate-bg.png" alt="Certificate of Completion" class="cert-bg-img">
           <div class="cert-name-overlay">${escHtml(certUserName)}</div>
+          <div class="cert-date-overlay">${certDate}</div>
         </div>
       </div>
      </div>
@@ -234,6 +236,7 @@ function openCertModal() {
   const existing = document.getElementById('certModalOverlay');
   if (existing) existing.remove();
 
+  const d = new Date(); const certDate = String(d.getDate()).padStart(2,'0') + '/' + String(d.getMonth()+1).padStart(2,'0') + '/' + d.getFullYear();
   const overlay = document.createElement('div');
   overlay.className = 'cert-modal-overlay';
   overlay.id = 'certModalOverlay';
@@ -243,8 +246,9 @@ function openCertModal() {
       <div id="certModalBody">
         <div class="certificate" style="margin:0 auto;box-shadow:none;">
           <div class="cert-image-wrap">
-            <img src="assets/videos/certificate-bg.jpg" alt="Certificate of Completion" class="cert-bg-img">
+            <img src="assets/videos/certificate-bg.png" alt="Certificate of Completion" class="cert-bg-img">
             <div class="cert-name-overlay">${escHtml(certUserName)}</div>
+            <div class="cert-date-overlay">${certDate}</div>
           </div>
         </div>
       </div>

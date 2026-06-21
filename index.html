@@ -515,7 +515,30 @@
     .video-poster img {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
+    }
+    .video-poster-text {
+      background: linear-gradient(135deg, #1a1a2e 0%, #0a0a0f 100%);
+      flex-direction: column;
+      gap: 8px;
+    }
+    .poster-text-content {
+      text-align: center;
+      padding: 20px 16px;
+      position: relative;
+      z-index: 2;
+      max-width: 100%;
+    }
+    .poster-text-title {
+      font-size: 21px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.35;
+      letter-spacing: 0.2px;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      max-width: 220px;
+      margin: 0 auto;
     }
     .play-btn-overlay {
       position: absolute;
@@ -1207,6 +1230,7 @@
       <a href="#s-create" class="block py-2 text-sm text-gray-500 hover:text-gray-900">Create Account</a>
       <a href="#s-stories" class="block py-2 text-sm text-gray-500 hover:text-gray-900">Upload Stories</a>
       <a href="#s-posts" class="block py-2 text-sm text-gray-500 hover:text-gray-900">Upload Posts</a>
+      <a href="#s-carousel" class="block py-2 text-sm text-gray-500 hover:text-gray-900">Carousel Post</a>
       <a href="#s-reels" class="block py-2 text-sm text-gray-500 hover:text-gray-900">Upload Reels</a>
       <a href="#s-collab" class="block py-2 text-sm text-gray-500 hover:text-gray-900">Collaboration Tag</a>
       <a href="#s-record-video" class="block py-2 text-sm text-gray-500 hover:text-gray-900">How to Record a Video</a>
@@ -1392,7 +1416,9 @@
         'Write down your password somewhere safe'
       ],
       video: 'assets/videos/account.mp4',
-      poster: 'assets/images/create-account-thumb.jpg'
+      poster: 'assets/images/create-account-thumb.jpg',
+      posterText: 'Create Your Account',
+      posterColor: 'linear-gradient(135deg, #4F46E5, #7C3AED)'
     }, {
       id: 'stories', num: '3', label: 'Stories',
       badge: ' Section 3',
@@ -1411,7 +1437,9 @@
         'Use stickers to make stories engaging'
       ],
       video: 'assets/videos/stories.mp4',
-      poster: 'assets/images/story-thumb.jpg'
+      poster: 'assets/images/story-thumb.jpg',
+      posterText: 'Upload Stories',
+      posterColor: 'linear-gradient(135deg, #F97316, #E1306C)'
     }, {
       id: 'posts', num: '4', label: 'Posts',
       badge: ' Section 4',
@@ -1430,10 +1458,36 @@
         'Write short, friendly captions'
       ],
       video: 'assets/videos/posts.mp4',
-      poster: 'assets/images/post-thumb.jpg'
+      poster: 'assets/images/post-thumb.jpg',
+      posterText: 'Upload Posts',
+      posterColor: 'linear-gradient(135deg, #0D9488, #059669)'
     }, {
-      id: 'reels', num: '5', label: 'Reels',
+      id: 'carousel', num: '5', label: 'Carousel Post',
       badge: ' Section 5',
+      title: 'Carousel Post',
+      desc: 'Learn how to upload multiple photos or videos in one Instagram post using the carousel feature.',
+      steps: [
+        'Open Instagram app',
+        'Tap the + icon',
+        'Select Post',
+        'Tap the multiple select icon',
+        'Choose multiple photos or videos',
+        'Arrange the order if needed',
+        'Tap Next',
+        'Add caption, tags, or location',
+        'Tap Share to upload the carousel post'
+      ],
+      tips: [
+        'Carousel posts can include up to 10 photos or videos',
+        'Use a mix of photos and videos to make your carousel engaging'
+      ],
+      video: 'assets/videos/carousel-post.mp4',
+      poster: 'assets/images/carousel-post-thumb.jpg',
+      posterText: 'Carousel Post',
+      posterColor: 'linear-gradient(135deg, #0891B2, #06B6D4)'
+    }, {
+      id: 'reels', num: '6', label: 'Reels',
+      badge: ' Section 6',
       title: 'Upload Reels',
       desc: 'Reels are short, fun videos with music. They\'re the best way to share your Instagram journey creatively!',
       steps: [
@@ -1449,10 +1503,12 @@
         'Use trending songs to reach more people'
       ],
       video: 'assets/videos/reels.mp4',
-      poster: 'assets/images/reel-thumb.jpg'
+      poster: 'assets/images/reel-thumb.jpg',
+      posterText: 'Upload Reels',
+      posterColor: 'linear-gradient(135deg, #DC2626, #9333EA)'
     }, {
-      id: 'collab', num: '6', label: 'Collaboration Tag',
-      badge: ' Section 6',
+      id: 'collab', num: '7', label: 'Collaboration Tag',
+      badge: ' Section 7',
       title: 'Add Collaboration Tag on Reels',
       desc: 'Invite another Instagram account as a collaborator on a reel so both profiles share the same content together. Great for collaborating with friends!',
       steps: [
@@ -1472,12 +1528,14 @@
       ],
       video: 'assets/videos/collaboration.mp4',
       poster: 'assets/images/collab-thumb.jpg',
+      posterText: 'Add Collaboration Tag on Reels',
+      posterColor: 'linear-gradient(135deg, #F59E0B, #D97706)',
       scenes: [
         { label: 'Invite Collaborator', html: '<div class="ig-scene"><div class="ig-top-bar"><span>New Reel</span><span style="color:#405DE6;font-weight:700">Share</span></div><div class="ig-content ig-center"><div class="ig-modal"><div class="ig-invite-btn ig-pulse">+ Invite Collaborator</div><p style="color:#999;font-size:9px;margin-top:8px">Share together with your partner </p></div></div></div>' }
       ]
     }, {
-      id: 'record-video', num: '7', label: 'How to Record a Video',
-      badge: ' Section 9',
+      id: 'record-video', num: '8', label: 'How to Record a Video',
+      badge: ' Section 8',
       title: 'How to Record a Video',
       desc: 'Learn how to record a video directly from Instagram using your phone camera.',
       steps: [
@@ -1495,10 +1553,12 @@
         'Hold your phone steady while recording'
       ],
       video: 'assets/videos/record-video.mp4',
-      poster: 'assets/images/record-video-thumb.svg'
+      poster: 'assets/images/record-video-thumb.svg',
+      posterText: 'How to Record a Video',
+      posterColor: 'linear-gradient(135deg, #6366F1, #3B82F6)'
     }, {
-      id: 'repost-reel', num: '8', label: 'How to Repost Reel &amp; Post',
-      badge: ' Section 8',
+      id: 'repost-reel', num: '9', label: 'How to Repost Reel &amp; Post',
+      badge: ' Section 9',
       title: 'How to Repost Reel &amp; Post',
       desc: 'Learn how to repost reels and posts safely and correctly using Instagram sharing options.',
       steps: [
@@ -1515,10 +1575,12 @@
         'Reposting to story is the safest way to share'
       ],
       video: 'assets/videos/repost-reel-post.mp4',
-      poster: 'assets/images/repost-reel-thumb.svg'
+      poster: 'assets/images/repost-reel-thumb.svg',
+      posterText: 'How to Repost Reel & Post',
+      posterColor: 'linear-gradient(135deg, #A855F7, #EC4899)'
     }, {
-      id: 'share-link', num: '9', label: 'How to Share a Link on Story',
-      badge: ' Section 9',
+      id: 'share-link', num: '10', label: 'How to Share a Link on Story',
+      badge: ' Section 10',
       title: 'How to Share a Link on Story',
       desc: 'Learn how to add and share links on Instagram stories using the Link sticker.',
       steps: [
@@ -1536,10 +1598,12 @@
         'Place the sticker where it does not cover important content'
       ],
       video: 'assets/videos/share-link-story.mp4',
-      poster: 'assets/images/share-link-thumb.svg'
+      poster: 'assets/images/share-link-thumb.svg',
+      posterText: 'How to Share a Link on Story',
+      posterColor: 'linear-gradient(135deg, #06B6D4, #3B82F6)'
     }, {
-      id: 'highlight-story', num: '10', label: 'Highlight Your Story',
-      badge: ' Section 10',
+      id: 'highlight-story', num: '11', label: 'Highlight Your Story',
+      badge: ' Section 11',
       title: 'Highlight Your Story',
       desc: 'Learn how to save your Instagram story as a highlight on your profile.',
       steps: [
@@ -1557,10 +1621,12 @@
         'Add a custom cover to match your profile style'
       ],
       video: 'assets/videos/highlight-your-story.mp4',
-      poster: 'assets/images/highlight-story-thumb.svg'
+      poster: 'assets/images/highlight-story-thumb.svg',
+      posterText: 'Highlight Your Story',
+      posterColor: 'linear-gradient(135deg, #F59E0B, #F97316)'
     }, {
-      id: 'switch-public', num: '11', label: 'Switch to Public Account',
-      badge: ' Section 11',
+      id: 'switch-public', num: '12', label: 'Switch to Public Account',
+      badge: ' Section 12',
       title: 'Switch to Public Account',
       desc: 'Learn how to switch your Instagram account from private to public.',
       steps: [
@@ -1577,10 +1643,12 @@
         'Public accounts can appear in Explore and search results'
       ],
       video: 'assets/videos/switch-to-public-account.mp4',
-      poster: 'assets/images/switch-public-thumb.svg'
+      poster: 'assets/images/switch-public-thumb.svg',
+      posterText: 'Switch to Public Account',
+      posterColor: 'linear-gradient(135deg, #10B981, #059669)'
     }, {
-      id: 'settings', num: '12', label: 'Settings &amp; Privacy',
-      badge: ' Section 12',
+      id: 'settings', num: '13', label: 'Settings &amp; Privacy',
+      badge: ' Section 13',
       title: 'Settings &amp; Privacy',
       desc: 'Keep your account safe and control who sees your content. Here are the key settings to know.',
       steps: [
@@ -1599,8 +1667,8 @@
       poster: 'assets/images/settings-thumb.jpg',
       hidePhone: true
     }, {
-      id: 'problems', num: '13', label: 'Common Problems',
-      badge: ' Section 13',
+      id: 'problems', num: '14', label: 'Common Problems',
+      badge: ' Section 14',
       title: 'Common Problems &amp; Solutions',
       desc: 'Don\'t worry &mdash; most issues are easy to fix. Here are solutions to the most common problems.',
       steps: [
@@ -1815,14 +1883,20 @@
     // ===== REUSABLE TUTORIAL VIDEO COMPONENT =====
     // videoSrc: path to MP4 file
     // posterSrc: path to thumbnail/poster image (SVG used directly)
+    // posterText: optional text to show instead of poster image
     // Returns complete HTML for a video player inside an iPhone screen
-    function renderTutorialVideo(videoSrc, posterSrc) {
+    function renderTutorialVideo(videoSrc, posterSrc, posterText, posterColor) {
       const posterSvg = posterSrc.replace('.jpg', '.svg');
+      const posterInner = posterText ? `
+            <div class="poster-text-content">
+              <div class="poster-text-title">${posterText}</div>
+            </div>` : `
+            <img src="${posterSvg}" alt="Play tutorial" loading="lazy">`;
       return `
         <div class="video-player" data-video="${videoSrc}" data-poster="${posterSrc}">
-          <video preload="auto" playsinline controls muted src="${videoSrc}"></video>
-          <div class="video-poster" onclick="handlePlayClick(this)">
-            <img src="${posterSvg}" alt="Play tutorial" loading="lazy">
+          <video preload="metadata" playsinline webkit-playsinline controls muted src="${videoSrc}"></video>
+          <div class="video-poster${posterText ? ' video-poster-text' : ''}" onclick="handlePlayClick(this)"${posterColor ? ` style="background:${posterColor}"` : ''}>
+            ${posterInner}
             <div class="play-btn-overlay">
               <div class="play-btn-large">
                 <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -1884,7 +1958,7 @@
 
     // ===== RENDER IPHONE WITH TUTORIAL VIDEO =====
     function renderPhone(s, index) {
-      const videoHtml = renderTutorialVideo(s.video, s.poster);
+      const videoHtml = renderTutorialVideo(s.video, s.poster, s.posterText, s.posterColor);
       const phoneInner = s.scenes ? `
         <div class="iphone group">
           <div class="iphone-notch"><div class="iphone-notch-inner"></div></div>
